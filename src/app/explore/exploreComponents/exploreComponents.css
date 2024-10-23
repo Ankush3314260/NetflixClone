@@ -1,0 +1,104 @@
+.pageTransiton {
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+}
+.nav-link{
+    position: relative;
+}
+.nav-text{
+    position: relative;
+}
+.nav-text::after{
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    z-index: 10;
+    width: 0%;
+    transition: width 300ms;
+background-color: #E70713;
+}
+.nav-text:hover::after{
+    width: 120%;
+
+    transition: all;
+    transition-duration: 300ms;
+}
+.nav-text{
+    transition: all;
+    transition-duration: 300ms;
+}
+.nav-text:hover{
+    color: #E70713;
+    transition: all;
+    transition-duration: 300ms;
+}
+
+/* film roll animation */
+.film-roll{
+    animation: 30s roll infinite linear;
+}
+.film-roll-down{
+    animation: 30s rollD infinite linear;
+}
+@keyframes roll {
+    to{
+        transform: translateY(-50%);
+    }
+}
+@keyframes rollD {
+    to{
+        transform: translateY(0%);
+    }
+}
+.shadows::before{
+    content: " ";
+    position: absolute;
+    width: 100%;
+    /* bottom: 99%; */
+    height: 100px;
+    /* top: 0; */
+    z-index: 99999;
+    /* background-color: aliceblue; */
+    background-image: linear-gradient(to bottom,rgba(5,5,5,1) 20%, rgba(0,0,0,0.0001) 100%);
+
+}
+.shadows::after{
+    content: " ";
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 100px;
+    /* top: 0; */
+    z-index: 99999;
+    /* background-color: aliceblue; */
+    background-image: linear-gradient(to top,rgba(5,5,5,1) 20%, rgba(0,0,0,0.0001) 100%);
+
+}
+.fade-crousal::before{
+    content: " ";
+    position: absolute; 
+    bottom: 0%;
+    left: 0;
+    top: 0;
+    right: 90%;
+    z-index: 99999;
+    /* background-color: aliceblue; */
+    background-image: linear-gradient(to right,rgba(5,5,5,1) 20%, rgba(0,0,0,0.0001) 100%);
+}
+.fade-crousal::after{
+    content: " ";
+    position: absolute; 
+    bottom: 0;
+    left: 90%;
+    top: 0;
+    right: 0%;
+    z-index: 99999;
+    /* background-color: aliceblue; */
+    background-image: linear-gradient(to left,rgba(5,5,5,1) 20%, rgba(0,0,0,0.0001) 100%);
+}
+.All-collection{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(max(100px,18%),1fr));
+    gap: 13px;
+}
