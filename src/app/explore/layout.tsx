@@ -14,7 +14,7 @@ export default function RootLayout({
   
     <div className="bg-[#050505] text-white relative responsive-parent-text">
       <div>
-      <nav className='py-8 text-[0.3em]'>
+      <nav className='py-8 text-[0.3em] relative z-50 '>
                        <div className='flex justify-between '>
                         <div className='w-2/5 flex justify-center'>
                               <Image className='w-[30%] min-w-[50px]  ' width="200" height="100" src="/images/Logonetflix.png" alt='logonetflix'/>
@@ -40,16 +40,16 @@ export default function RootLayout({
                    </nav>
       </div>
        
-        <div className=" z-30">
+        <div className=" ">
         {children}
         </div>
-        <div className="mx-[10%] border-t-[1px] border-red-600">
+        <div className="mx-[10%] border-t-[1px] border-red-600 relative z-50">
         <div className=" text-white min-h-screen py-[1em]">
        
         
      
 
-        <div className="py-5">
+        <div className="py-5 ">
           <p className="text-[#AFAFAF] text-[0.3em] py-5">
             Questions? Call XXX-XXX-XXX-XX24
           </p>

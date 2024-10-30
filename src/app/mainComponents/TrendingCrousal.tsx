@@ -135,11 +135,12 @@ const TrendingCrousal = () => {
                     
                       <SwiperSlide key={movie.id}>
                       <p className="absolute top-0 z-[999] w-[15%] py-[5px] [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_80%)] right-0 text-center bg-[#E50914] text-[0.2em] max-sm:text-[0.35em]">Top <b className="block">20</b></p>
+
                         <Image
                           width="350"
                           height="350"
                           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                          alt="Moviepoater"
+                          alt="Movieposter"
                         />
                          <p className="absolute trending-number font-custom-bold bottom-0 sm:-left-[15%]   z-50 w-[15%]    text-center  text-[2em] max-sm:text-[2.5em]">{index+1}</p>  
                       </SwiperSlide>

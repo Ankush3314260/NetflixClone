@@ -118,11 +118,11 @@ const TrendingCast: React.FC = () => {
                   return (
                     <div key={index} className="  border-2 p-2">
                       <SwiperSlide key={movie.id}>
-                        <div className=" rounded-full border-2 p-2 max-mob:p-1 max-mob:border-[1px] max-mob:flex max-mob:justify-center relative">
+                        <div className=" rounded-full border-2 p-2 max-mob:p-1 max-mob:border-[1px] max-mob:flex max-mob:justify-center relative hover:border-[#E70713] transition-all duration-300">
                           <Image
                             width="350"
                             height="350"
-                            className=" w-[20vw] h-[16vw] rounded-full object-cover"
+                            className=" w-[20vw] h-[16vw] rounded-full object-cover "
                             src={`https://image.tmdb.org/t/p/w500/${movie.profile_path}`}
                             alt="Movieposter"
                           />

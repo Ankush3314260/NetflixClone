@@ -7,6 +7,7 @@ import SwiperCore from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
+import Link from "next/link";
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
@@ -127,10 +128,12 @@ const TrendingNow = () => {
             }}
           >
             {/* Swiper Slides */}
-            {trending.map((item) => (
+            {trending.map((item:Movie) => (
               <SwiperSlide key={item.id}>
+                <Link href={`/explore/movies/details/${item.title}-${item.id}`}>
                 <div className="relative z-10 m-auto flex items-center h-full">
                   {/* Background Image */}
+
                   <Image
                     className="absolute top-0 left-0 bottom-0 right-0 w-full object-cover -z-30 opacity-30"
                     src={`https://image.tmdb.org/t/p/w1280/${item.backdrop_path}`}
@@ -180,6 +183,7 @@ const TrendingNow = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

@@ -7,7 +7,7 @@ import Loader from "@/app/Loader";
 import "swiper/css/navigation";
 import { Movie } from "@/app/utility/types";
 import { MoviesResponse } from "@/app/utility/types";
-// import required modules
+import Link from "next/link";
 import { Navigation } from "swiper/modules";
 import axios from "axios";
 
@@ -124,14 +124,15 @@ const TrendingComponent :React.FC<Props>=({title,url}) => {
                     <div key={index} className="w-[50%] relative ">
                     
                       <SwiperSlide key={movie.id}>
-                     
+                      <Link href={`/explore/movies/details/${movie.title}capo-${movie.id}`}>
                         <Image
                           width="350"
                           height="350"
+                          className="transition-all hover:duration-600 duration-500 border-2 border-[#050505]  flex items-center justify-center hover:border-[2px] hover:border-[#E70713]"
                           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                           alt="Moviepoater"
                         />
-                          
+                          </Link>
                       </SwiperSlide>
                     
                     </div>
