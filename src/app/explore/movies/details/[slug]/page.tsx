@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import axios from "axios";
 import "../../Movies.css";
 import gsap from "gsap";
-import ErrorPage from "@/app/explore/exploreComponents/error";
+import ErrorPage from "@/app/explore/exploreComponents/ErrorPage";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../../../movies/Movies.css";
 gsap.registerPlugin(ScrollTrigger);
