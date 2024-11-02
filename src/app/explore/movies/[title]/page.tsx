@@ -52,7 +52,9 @@ const SearchPage: React.FC = () => {
         return;
       }
     } catch (error) {
+
       console.error("something went wrong", error);
+      throw new Error("Got while")
     }
   };
   useEffect(() => {

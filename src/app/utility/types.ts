@@ -132,3 +132,8 @@ export interface VideoResult {
   published_at: string;
   id: string;
 }
+
+export interface errorTypes{
+       statuscode:number
+       status:boolean
+}

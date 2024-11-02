@@ -5,17 +5,16 @@ import { useParams } from "next/navigation";
 import axios from "axios";
 import "../../Movies.css";
 import gsap from "gsap";
+import ErrorPage from "@/app/explore/exploreComponents/error";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "../../../movies/Movies.css"
+import "../../../movies/Movies.css";
 gsap.registerPlugin(ScrollTrigger);
 import {
   Detailsmovie,
   Genre,
-  ProductionCompany,
-  SpokenLanguage,
-  ProductionCountry,
   VideoResult,
   MovieVideos,
+  errorTypes
 } from "@/app/utility/types";
 import Loader from "@/app/Loader";
 import Image from "next/image";
@@ -23,10 +22,10 @@ import CastforDetails from "../CastforDetails";
 import SimilarMovies from "../SimilarMovies";
 const Page = () => {
   const router = useParams();
-  const [Loading,setLoading] =useState<boolean>(true)
   const [details, setDetails] = useState<Detailsmovie | null>(null); // Adjust type for a single Detailsmovie
   const [video, setVideo] = useState<VideoResult[] | null>([]);
   const [id, setId] = useState<string | null>(null);
+  const [error, setError] = useState<errorTypes | null>(null);
 
   useEffect(() => {
     if (router.slug) {
@@ -45,19 +44,19 @@ const Page = () => {
       );
       let count = 0;
       console.log(data);
-      
+
       setVideo(
         data.results.filter((items: VideoResult) => {
           if (items.type == "Trailer" && count == 0) {
             count++;
             return items;
-          }  
-          setLoading(false)
+          }
+        
         })
       ); // Store fetched details
     } catch (error) {
       console.log("Error", error);
-      setLoading(false)
+    
     }
   };
   const getFetch = async () => {
@@ -70,13 +69,12 @@ const Page = () => {
       getVideo();
       setDetails(data); // Store fetched details
       console.log(video);
-
-      // setVideo(Trailers)
-      
-      // console.log(data);
     } catch (error) {
-      console.log("Error sdfsf", error);
-     throw error
+      if (axios.isAxiosError(error)) {
+        if (error.status) {
+          setError({statuscode:error.status,status:true})  
+        } 
+      }
     }
   };
 
@@ -126,6 +124,10 @@ const Page = () => {
       </div>
     );
   };
+
+  if (error?.status) {
+    return <ErrorPage error={error}/>
+  }
   return (
     <div className="min-h-svh relative">
       {details ? (
@@ -202,9 +204,8 @@ const Page = () => {
                 {/* video tag  showing trailer or teaser*/}
                 {/*  */}
                 <div className="z-10 relative sm:mx-[5%] max-sm:w-4/5 m-auto ">
-                  {(video)!=null ? (
+                  {video != null ? (
                     <div className="grid grid-cols-2 max-sm:grid-cols-1 ">
-                     
                       {video.map((videos, index) => {
                         return (
                           <VideoComponent key={index} videoResults={videos} />
@@ -215,41 +216,45 @@ const Page = () => {
                       </p>
                     </div>
                   ) : (
-                    <div>
-                    {video !=null ? "": <Loader />} 
-                    </div>
+                    <div>{video != null ? "" : <Loader />}</div>
                   )}
-                </div> 
-                
+                </div>
+
                 <div className="relative z-10">
                   {id ? <CastforDetails ids={id} /> : ""}
                 </div>
                 {/* run time details */}
                 <div className="relative z-10 mx-[5%]  flex flex-wrap items-center pt-[0.5em] gap-[1%]">
                   <div className="border-b-[1px] flex w-full">
-                    <h2 className="text-[0.5em] text-[#E70713]">Production country -</h2>
+                    <h2 className="text-[0.5em] text-[#E70713]">
+                      Production country -
+                    </h2>
 
-                    {details.production_countries.map((item,index) => {
+                    {details.production_countries.map((item, index) => {
                       return (
                         <p
                           key={item.iso_3166_1}
                           className="text-[0.35em]  p-2   "
                         >
-                        {index != 0 ? "," : ""} &nbsp;{item.name} 
+                          {index != 0 ? "," : ""} &nbsp;{item.name}
                         </p>
                       );
                     })}
                   </div>
                   <div className="   w-full">
                     <div className="m-auto border-b-[1px]">
-                      <span className="text-[0.45em] text-[#E70713]">Release Date : </span>
+                      <span className="text-[0.45em] text-[#E70713]">
+                        Release Date :{" "}
+                      </span>
                       <span className="text-[0.45em]  p-2 rounded-xl ">
                         {" "}
                         {details.release_date}
                       </span>
                     </div>
                     <div className="m-auto border-b-[1px]">
-                      <span className="text-[0.45em] text-[#E70713]">Run Time : </span>
+                      <span className="text-[0.45em] text-[#E70713]">
+                        Run Time :{" "}
+                      </span>
                       <span className="text-[0.45em]  p-2 rounded-xl ">
                         {" "}
                         {details.runtime}Min
@@ -310,20 +315,16 @@ const Page = () => {
                         {details.genres.map((items: Genre, index: number) => {
                           return (
                             <div key={items.id} className="  text-[0.7em] ">
-                             {index != 0 ?"," : ""} &nbsp;{items.name} 
-                             
+                              {index != 0 ? "," : ""} &nbsp;{items.name}
                             </div>
                           );
                         })}
                       </div>
-                    </div> 
-                  </div>
-                  <div className="">
-                     {id?<SimilarMovies ids={id}/>:""}
                     </div>
+                  </div>
+                  <div className="">{id ? <SimilarMovies ids={id} /> : ""}</div>
                 </div>
               </div>
-              
             </div>
           ) : (
             <div className="min-h-svh flex justify-center items-center">
