@@ -96,24 +96,32 @@ const SearchPage: React.FC = () => {
               </h4>
             }
             endMessage={
-              <p style={{ textAlign: "center"}}>
+              <p className="w-full" style={{ textAlign: "center"}}>
             
               </p>
             }
           >
             {collectionMovies.map((items: Movie, index: number) => {
-              return (
-                <div key={index} className="relative text-[0.45em] ">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                    width="350"
-                    height="200"
-                    className=" transition-all hover:duration-600 duration-500 border-2 border-[#050505]  flex items-center justify-center hover:border-[2px] hover:border-[#E70713]"
-                    alt={`${items.original_name}`}
-                  />
-                  <p className=" text-[0.6em] text-center">{items.original_name}</p>
+               if (items.poster_path) {
+                return (
+                  <div key={index} className="relative text-[0.45em] ">
+                    <Link  href={`/explore/movies/details/${items.name}capo-${items.id}`}>
+                  {
+                    items.poster_path?( <Image
+                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
+                      width="350"
+                      height="200"
+                      className=" transition-all hover:duration-600 duration-500 border-2 border-[#050505]  flex items-center justify-center hover:border-[2px] hover:border-[#E70713]"
+                      alt={`${items.original_name}`}
+                    />):("")
+                  }
+                 </Link>
+                  {/* <p className=" text-[0.6em] text-center">{items.original_name}</p> */}
                 </div>
-              );
+              
+                );
+               }
+             
             })}
              <p className="text-center text-[0.6em] pt-[1em]"><b>Yay! You caught all Result</b></p>
           </InfiniteScroll>

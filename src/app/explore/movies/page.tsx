@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import './Movies.css'
 import gsap from "gsap";
 import AdvanceSearch from "../exploreComponents/AdvanceSearch";
-import Link from "next/link";
+// import Link from "next/link";
 import { useRouter } from "next/navigation";
 const Movie = () => {
   const router= useRouter()
