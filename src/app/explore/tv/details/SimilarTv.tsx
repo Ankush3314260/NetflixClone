@@ -13,14 +13,16 @@ import Link from "next/link";
 interface Props {
   ids: string;
 }
-const SimilarMovies: React.FC<Props> = ({ ids }) => {
+const SimilarTv: React.FC<Props> = ({ ids }) => {
   const [similar, setSimilar] = useState<Movie[]>([]);
+  const [errors,setErrors]=useState<boolean>(false)
 const nextRef = useRef<HTMLDivElement>(null);
   const prevRef = useRef<HTMLDivElement>(null);
-  const getSimilarMovies = async () => {
+  const getSimilarTv = async () => {
     try {
       const { data } = await axios.get<MoviesResponse>(
-        `https://api.themoviedb.org/3/movie/${ids}/similar?language=en-US&page=1&&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/tv/${ids}/similar?language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        
       );
       console.log(data.results);
       setSimilar(
@@ -28,18 +30,19 @@ const nextRef = useRef<HTMLDivElement>(null);
       );
     } catch (error) {
       console.log(error);
+      setErrors(true)
     }
   };
   useEffect(() => {
-    getSimilarMovies();
+    getSimilarTv();
   }, [ids]);
   return (
       <div className=" pt-[0.5em] bg-blue  text-white z-10">
       <div className=" ">
-      {Object.keys(similar).length !== 0 ? (
-        <div className="">
+      {Object.keys(similar).length != 0 ? (
+        <div className="mx-[5%]">
           <p className="text-[0.4em] text-white  py-[1em]">
-           Similar Movies
+           Similar Tv
           </p>
           <div className="  flex items-center  ">
             <div
@@ -125,11 +128,11 @@ const nextRef = useRef<HTMLDivElement>(null);
                             items.poster_path?   <div className=" relative">
                             {
                               items.poster_path?
-                              <Link href={`/explore/movies/details/${items.title}capo-${items.id}`}>
+                              <Link href={`/explore/tv/details/${items.title}capo-${items.id}`}>
                               <Image
                               width="1050"
                               height="1050"
-                              className="    border-[2px] max-sm:border-[1px] border-white hover:border-[#E70713] transition-all duration-300 m-auto object-cover object-center "
+                              className="  min-h-full  border-[2px] max-sm:border-[1px] border-white hover:border-[#E70713] transition-all duration-300 m-auto object-cover object-center "
                               src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
                               alt="Movieposter"
                             />
@@ -154,7 +157,7 @@ const nextRef = useRef<HTMLDivElement>(null);
               onClick={(e) => {
                 e.preventDefault();
               }}
-              className=" text-center relative z-50 flex justify-end cursor-pointer max-mob:hidden "
+              className=" text-center relative z-50 flex justify-end cursor-pointer max-mob:hidden"
               aria-label="Next Slide"
             >
               <svg
@@ -171,16 +174,14 @@ const nextRef = useRef<HTMLDivElement>(null);
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center ">
-        {SimilarMovies.length!=0?"": <Loader />} 
-        </div>
+       ""
       )}
     </div>
   </div>
   );
 };
 
-export default SimilarMovies;
+export default SimilarTv;
 
 
 

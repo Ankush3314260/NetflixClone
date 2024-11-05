@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import Image from "next/image";
 import AdvanceSearchResult from "./AdvanceSearchResult";
 interface Genre {
   id: number;
@@ -11,21 +12,27 @@ interface Genre {
 interface GenresResponse {
   genres: Genre[];
 }
-// interface Gprops{
-//     url:string
-// }
-const AdvanceSearch: React.FC = () => {
+interface Gprops {
+  url: string;
+  type: string;
+}
+const AdvanceSearch: React.FC<Gprops> = ({ url, type }) => {
   const [geners, setGeners] = useState<Genre[]>([]);
   const [searchOpenClose, setSearchOpenClose] = useState<boolean>(false);
   const [selectedGenre, setSelectedGenre] = useState<string>("");
-  const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
+  const [selectedYear, setSelectedYear] = useState<number>(
+    new Date().getFullYear()
+  );
   const [vote, setVote] = useState<number>(5);
-  const years = Array.from({ length: 51 }, (_, index) => new Date().getFullYear() - index);
+  const years = Array.from(
+    { length: 51 },
+    (_, index) => new Date().getFullYear() - index
+  );
   const votes = Array.from({ length: 11 }, (_, index) => 10 - index);
   const fetchGeners = async () => {
     try {
       const { data } = await axios.get<GenresResponse>(
-        `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=4e041fd34844514d59b1259e22d9930b`
+        `${url}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
       console.log(data.genres);
       setGeners(data.genres);
@@ -41,15 +48,11 @@ const AdvanceSearch: React.FC = () => {
   };
   const handleChangeVote = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setVote(parseInt(event.target.value));
-   
-    
   };
-  const handleSubmit =()=>{
-    console.log(selectedGenre,vote,selectedYear);
-  }
- useEffect(()=>{
-
- },[])
+  const handleSubmit = () => {
+    console.log(selectedGenre, vote, selectedYear);
+  };
+  useEffect(() => {}, []);
   useEffect(() => {
     fetchGeners();
   }, []);
@@ -58,15 +61,18 @@ const AdvanceSearch: React.FC = () => {
       <button
         onClick={() => {
           setSearchOpenClose(!searchOpenClose);
-               if (!document.querySelector(".result")?.classList.contains("hidden")) {
-                document.querySelector(".result")?.classList.toggle("hidden");
-               }
-               if ( document.querySelector(".base-page")?.classList.contains("hidden")) {
-                document.querySelector(".base-page")?.classList.remove("hidden")
-               }
-
+          if (
+            !document.querySelector(".result")?.classList.contains("hidden")
+          ) {
+            document.querySelector(".result")?.classList.toggle("hidden");
+          }
+          if (
+            document.querySelector(".base-page")?.classList.contains("hidden")
+          ) {
+            document.querySelector(".base-page")?.classList.remove("hidden");
+          }
         }}
-        className="transition-all duration-300 bg-[#E70714] z-20   hover:bg-[#C11119] text-[0.35em] text-center py-[0.2em] block px-[1em]  rounded-full "
+        className="transition-all duration-300 bg-[#E70714] z-20   hover:bg-[#C11119] text-[0.35em] text-center py-[0.3em] block px-[1em]  rounded-full "
       >
         Advance Search
       </button>
@@ -129,7 +135,7 @@ const AdvanceSearch: React.FC = () => {
             </div>
             <div className="flex space-x-2 justify-center items-center">
               <label htmlFor="genre" className="block text-[#808080]">
-                Imdb: {" "}
+                Imdb:{" "}
               </label>
               <select
                 id="genre"
@@ -143,12 +149,12 @@ const AdvanceSearch: React.FC = () => {
                   </option>
                 )}
                 {votes.map((item: number, index: number) => {
-                  if (item==10) {
-                   return; 
+                  if (item == 10) {
+                    return;
                   }
                   return (
                     <option key={index} value={`${item}`} className="p-2">
-                      {item+1}+
+                      {item + 1}+
                     </option>
                   );
                 })}
@@ -156,26 +162,55 @@ const AdvanceSearch: React.FC = () => {
             </div>
           </div>
           <div className="flex justify-center py-[1em] text-white">
-            <button onClick={()=>{
+            <button
+              onClick={() => {
                 handleSubmit();
-                if ( document.querySelector(".result")?.classList.contains("hidden")) {
-                    document.querySelector(".result")?.classList.toggle("hidden");    
+                if (
+                  document
+                    .querySelector(".result")
+                    ?.classList.contains("hidden")
+                ) {
+                  document.querySelector(".result")?.classList.toggle("hidden");
                 }
-                if (!document.querySelector(".base-page")?.classList.contains("hidden")) {
-                  document.querySelector(".base-page")?.classList.add("hidden")
+                if (
+                  !document
+                    .querySelector(".base-page")
+                    ?.classList.contains("hidden")
+                ) {
+                  document.querySelector(".base-page")?.classList.add("hidden");
                 }
-                
-                }} 
-                className="transition-all duration-300 bg-[#E70714] z-20  hover:bg-[#C11119] py-[0.2em] px-[1em] rounded-sm ">Search</button>
+              }}
+              className="transition-all duration-300 bg-[#E70714] z-20  hover:bg-[#C11119] py-[0.2em] px-[1em] rounded-sm "
+            >
+              Search
+            </button>
           </div>
         </div>
       </div>
       {/* advance result page */}
       <div className="hidden result">
-        {
-            vote && years && selectedGenre ? (<AdvanceSearchResult vote={vote} year={selectedYear} genres={selectedGenre}/>):("")
-        }
-           
+        {vote && years && selectedGenre ? (
+          <AdvanceSearchResult
+            vote={vote}
+            year={selectedYear}
+            genres={selectedGenre}
+            type={type}
+          />
+        ) : (
+          <div className="min-h-svh flex justify-center items-center">
+            <div className="max-[5%] w-3/5 text-center">
+              <Image
+                className="m-auto"
+                src="/images/Logonetflix.png"
+                alt="netflix logo"
+                width="500"
+                height="500"
+              />
+              <p>0:Result </p>
+            
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

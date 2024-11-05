@@ -3,77 +3,81 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import "../../Movies.css";
 import gsap from "gsap";
 import ErrorPage from "@/app/explore/exploreComponents/ErrorPage";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../../../movies/Movies.css";
 gsap.registerPlugin(ScrollTrigger);
 import {
-  Detailsmovie,
-  Genre,
-  VideoResult,
+  Show,
+  TvGenre,
+  Season,
+  errorTypes,
   MovieVideos,
-  errorTypes
+  VideoResult,
 } from "@/app/utility/types";
 import Loader from "@/app/Loader";
 import Image from "next/image";
-import CastforDetails from "../CastforDetails";
-import SimilarMovies from "../SimilarMovies";
-const MoviePage = () => {
+import Tvcastdetails from "../Tvcastdetails";
+import SimilarTv from "../SimilarTv";
+import Link from "next/link";
+const Page = () => {
   const router = useParams();
-  const [details, setDetails] = useState<Detailsmovie | null>(null); // Adjust type for a single Detailsmovie
+  const [details, setDetails] = useState<Show | null>(null); // Adjust type for a single Detailsmovie
   const [video, setVideo] = useState<VideoResult[] | null>([]);
   const [id, setId] = useState<string | null>(null);
   const [error, setError] = useState<errorTypes | null>(null);
 
   useEffect(() => {
-    if (router.slug) {
-      const url = router.slug.slice(router.slug.indexOf("capo-") + 5);
+    if (router.slugTv) {
+      const url = router.slugTv.slice(router.slugTv.indexOf("capo-") + 5);
       if (typeof url == "string") {
         setId(url); // Set id only when router.slug is available
       }
     }
-  }, [router.slug]);
+  }, [router.slugTv]);
   const getVideo = async () => {
     if (!id) return; // Only fetch if id is set
 
     try {
       const { data } = await axios.get<MovieVideos>(
-        `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/tv/${id}/videos?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
       let count = 0;
       console.log(data);
 
       setVideo(
         data.results.filter((items: VideoResult) => {
-          if (items.type == "Trailer" && count == 0) {
+          if (
+            (items.type == "Trailer" || items.type == "Teaser") &&
+            count == 0
+          ) {
             count++;
             return items;
           }
-        
         })
       ); // Store fetched details
     } catch (error) {
       console.log("Error", error);
-    
     }
   };
   const getFetch = async () => {
     if (!id) return; // Only fetch if id is set
 
     try {
-      const { data } = await axios.get<Detailsmovie>(
-        `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+      const { data } = await axios.get<Show>(
+        `https://api.themoviedb.org/3/tv/${id}?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
       getVideo();
+      console.log(data);
+
       setDetails(data); // Store fetched details
       console.log(video);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.status) {
-          setError({statuscode:error.status,status:true})  
-        } 
+          setError({ statuscode: error.status, status: true });
+        }
       }
     }
   };
@@ -126,7 +130,7 @@ const MoviePage = () => {
   };
 
   if (error?.status) {
-    return <ErrorPage error={error}/>
+    return <ErrorPage error={error} />;
   }
   return (
     <div className="min-h-svh relative">
@@ -143,7 +147,7 @@ const MoviePage = () => {
                     src={`https://image.tmdb.org/t/p/w1280/${details.backdrop_path}`}
                     width="5000"
                     height="2050"
-                    alt={`${details.original_title}`}
+                    alt={`${details.original_name}`}
                   />
                   {/* <div className=" absolute  z-30  -translate-y-full bottom-0 left-0 right-0">
                       <svg
@@ -170,17 +174,17 @@ const MoviePage = () => {
                       width="1050"
                       height="1350"
                       className="border-[1px] border-[#E70713]"
-                      alt={`${details.original_title}`}
+                      alt={`${details?.original_name}`}
                     />
                   </div>
                   {/* section of title and rating */}
                   <div className="w-4/5   flex  text-[0.9em] sm:p-[3%]">
                     <div className="">
                       <p className="font-netflix  tracking-wider">
-                        {details.original_title}
+                        {details?.original_name}
                       </p>
                       <p className="flex w-full items-center max-sm:space-x-1 space-x-3 text-[0.45em]">
-                        <span>Rating: {details.vote_average.toFixed(1)}</span>
+                        <span>Rating: {details?.vote_average?.toFixed(1)}</span>
                         <Image
                           width="550"
                           height="550"
@@ -191,13 +195,10 @@ const MoviePage = () => {
                       </p>
                       <p className="text-[0.34em] pt-[0.5em] tracking-wide">
                         <span className="font-custom-bold">Overview:</span>
-                        {details.overview}
+                        {details?.overview}
                       </p>
                       <div></div>
                     </div>
-                    {/* overview section */}
-
-                    {/* cast of movie section movie */}
                   </div>
                 </div>
                 <br />
@@ -212,34 +213,104 @@ const MoviePage = () => {
                         );
                       })}
                       <p className="text-center text-[0.55em] text-white max-sm:order-first max-sm:text-[1em] relative z-10 flex items-center justify-center  font-netflix tracking-[0.1em]  trailer-text">
-                        TRAILER
+                        {video.length != 0 ? "TRAILER" : ""}
                       </p>
                     </div>
                   ) : (
-                    <div>{video != null ? "" : <Loader />}</div>
+                    ""
                   )}
                 </div>
-
+                {/* season and episode details */}
+                <div>
+                  {id ? (
+                    // air_date
+                    // :
+                    // "2024-06-17"
+                    // episode_count
+                    // :
+                    // 56
+                    // id
+                    // :
+                    // 397574
+                    // name
+                    // :
+                    // "Season 1"
+                    // overview
+                    // :
+                    // ""
+                    // poster_path
+                    // :
+                    // "/hlRhstt3Du57qm4A30w7RkHqEXg.jpg"
+                    // season_number
+                    // :
+                    // 1
+                    // vote_average
+                    // :
+                    // 0
+                    <div className="relative z-20 mx-[5%] text-[0.75em]">
+                      {details.seasons.length != 0 &&
+                      details.seasons[0].poster_path != null ? (
+                        <div>
+                          <h2>SEASON</h2>
+                          <div className="sm:grid-cols-5 max-sm:grid-cols-3 grid gap-[1%]">
+                            {details.seasons.map(
+                              (season: Season, index: number) => {
+                                return (
+                                  <div key={index}>
+                                    <h6>S{index + 1}</h6>
+                                    <div className="">
+                                      {season.poster_path !== null ? (
+                                        <Image
+                                          width="500"
+                                          height="1000"
+                                          alt="poster"
+                                          src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}
+                                          className="border-[1px] hover:border-[#E70713] transition-all duration-300 border-[#050505]"
+                                        />
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )}
+                          </div>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
                 <div className="relative z-10">
-                  {id ? <CastforDetails ids={id} /> : ""}
+                  {id ? <Tvcastdetails ids={id} /> : ""}
                 </div>
                 {/* run time details */}
                 <div className="relative z-10 mx-[5%]  flex flex-wrap items-center pt-[0.5em] gap-[1%]">
-                  <div className="border-b-[1px] flex w-full">
-                    <h2 className="text-[0.5em] text-[#E70713]">
-                      Production country -
-                    </h2>
-
-                    {details.production_countries.map((item, index) => {
-                      return (
-                        <p
-                          key={item.iso_3166_1}
-                          className="text-[0.35em]  p-2   "
-                        >
-                          {index != 0 ? "," : ""} &nbsp;{item.name}
-                        </p>
-                      );
-                    })}
+                  <div className=" w-full flex items-center">
+                    {details.production_countries.length != 0 ? (
+                      <div className="border-b-[1px]  w-full flex items-center">
+                        {" "}
+                        <h2 className="text-[0.5em] text-[#E70713]">
+                          Production country -
+                        </h2>
+                        {details.production_countries?.map((item, index) => {
+                          return (
+                            <p
+                              key={item.iso_3166_1}
+                              className="text-[0.45em]  p-2   "
+                            >
+                              {index != 0 ? "," : ""} &nbsp;{item.name}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="   w-full">
                     <div className="m-auto border-b-[1px]">
@@ -248,17 +319,25 @@ const MoviePage = () => {
                       </span>
                       <span className="text-[0.45em]  p-2 rounded-xl ">
                         {" "}
-                        {details.release_date}
+                        {details.first_air_date}
                       </span>
                     </div>
-                    <div className="m-auto border-b-[1px]">
-                      <span className="text-[0.45em] text-[#E70713]">
-                        Run Time :{" "}
-                      </span>
-                      <span className="text-[0.45em]  p-2 rounded-xl ">
-                        {" "}
-                        {details.runtime}Min
-                      </span>
+                    <div className="m-auto ">
+                      <div className="border-b-[1px]">
+                        {details.episode_run_time.length > 0 ? (
+                          <div>
+                            <span className="text-[0.45em] text-[#E70713]">
+                              Average Episode Run Time :{" "}
+                            </span>
+                            <span className="text-[0.45em]  p-2 rounded-xl ">
+                              {" "}
+                              {details.episode_run_time}Min
+                            </span>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -268,7 +347,8 @@ const MoviePage = () => {
                 <div className="relative z-10 mx-[5%]  ">
                   <div className="grid grid-cols-2 text-[0.35em]">
                     <div className="  ">
-                      {Object.keys(details.production_companies).length != 0 ? (
+                      {Object.keys(details?.production_companies)?.length !=
+                      0 ? (
                         <div>
                           <p className="text-center font-custom-bold uppercase text-[#E70713]">
                             Production Company
@@ -288,7 +368,7 @@ const MoviePage = () => {
                                           width="1050"
                                           height="2050"
                                           className="w-[30%] relative z-20"
-                                          alt={`${details.original_title}`}
+                                          alt={`${details.original_name}`}
                                         />
                                         <p className="text-[0.55em]">
                                           {items.name}
@@ -312,7 +392,7 @@ const MoviePage = () => {
                         Genre
                       </p>
                       <div className="flex justify-center gap-[1%] pt-[0.5em] max-sm:flex-wrap">
-                        {details.genres.map((items: Genre, index: number) => {
+                        {details.genres.map((items: TvGenre, index: number) => {
                           return (
                             <div key={items.id} className="  text-[0.7em] ">
                               {index != 0 ? "," : ""} &nbsp;{items.name}
@@ -322,14 +402,12 @@ const MoviePage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="">{id ? <SimilarMovies ids={id} /> : ""}</div>
+                  <div className="">{id ? <SimilarTv ids={id} /> : ""}</div>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="min-h-svh flex justify-center items-center">
-              <Loader />
-            </div>
+            ""
           )}
           <br />
         </div>
@@ -342,4 +420,4 @@ const MoviePage = () => {
   );
 };
 
-export default MoviePage;
+export default Page;

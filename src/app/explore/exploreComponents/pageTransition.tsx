@@ -58,13 +58,13 @@ const PageTransition = () => {
   }, []);
 //   762441,667538,912649,533535
   return (
-    <div className="fixed text-[6.5vw] z-[9999999999999] items-center min-h-screen  pageTransiton  bg-[#111111] top-0 left-0 right-0 bottom-0">
+    <div className=" text-[6.5vw] fixed z-[9999999] items-center min-h-screen  pageTransiton  bg-[#111111] top-0 left-0 right-0 bottom-0">
       <div className="">
         {
             data? ( 
             <div
-                style={{ maxWidth: "100%", aspectRatio: "16/9" }}
-                className="relative z-20"
+                style={{ maxWidth: "100%"}}
+                className="relative z-[9999999]  sm:aspect-[16/9] max-sm:aspect-[9/16] "
               >
                 <iframe
                   width="100%"
@@ -72,6 +72,7 @@ const PageTransition = () => {
                   src={`https://www.youtube.com/embed/${data.key}?autoplay=1&mute=1&playsinline=1&start=${key}&modestbranding=1&controls=0`}
                   title="Video"
                 //   frameBorder="0"
+                className="relative z-[9999999]"
                   allow="autoplay;clipboard-write; encrypted-media; gyroscope; picture-in-picture;fullscreen"
                   allowFullScreen
                 ></iframe>

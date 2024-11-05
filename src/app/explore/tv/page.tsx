@@ -5,16 +5,16 @@ import TrendingComponent from "../exploreComponents/TrendingComponent";
 import Collections from "../exploreComponents/Collections";
 import { ReactTyped } from "react-typed";
 import { useEffect } from "react";
-import './Movies.css'
+import '../movies/Movies.css'
 import gsap from "gsap";
 import AdvanceSearch from "../exploreComponents/AdvanceSearch";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
-const Movie = () => {
+const Tv = () => {
   const router= useRouter()
   const [search,setSearch]=useState<string>('')
   const handleNavigate=()=>{
-    const getUrl =search?`/explore/movies/${search}`:``
+    const getUrl =search?`/explore/tv/${search}`:``
     router.push(getUrl)
   }
    const handleSearch =(event:React.KeyboardEvent<HTMLInputElement>)=>{
@@ -54,12 +54,8 @@ const Movie = () => {
       <div className="mx-[10%]">
         <div className="text-[1.5em] flex justify-center max-mob:text-[1em] font-custom-bold  overflow-hidden">
           <p className="flex clip-text relative ">
-            <span className="movie-text translate-y-full ">M</span>
-            <span className="movie-text translate-y-full ">o</span>
-            <span className="movie-text translate-y-full ">v</span>
-            <span className="movie-text translate-y-full ">i</span>
-            <span className="movie-text translate-y-full ">e</span>
-            <span className="movie-text translate-y-full ">s </span>
+            <span className="movie-text translate-y-full ">T</span>
+            <span className="movie-text translate-y-full ">V</span>
             <span className="movie-text2 -translate-y-full "> &nbsp;S</span>
             <span className="movie-text2 -translate-y-full ">t</span>
             <span className="movie-text2 -translate-y-full ">a</span>
@@ -76,14 +72,14 @@ const Movie = () => {
         <div className="search-Bar flex justify-center   items-center w-full pt-[0.5em]   ">
           <ReactTyped
             strings={[
-              "Search for Action Movie",
-              "Search for Adventure Movie",
-              "Search for Animation Movie",
-              "Search for Comedy Movie",
-              "Search for Crime Movie",
-              "Search for Documentary Movie",
-              "Search for Fantasy Movie",
-              "Search for Mystery Movie",
+              "Search for Action Series",
+              "Search for Adventure Series",
+              "Search for Animation Series",
+              "Search for Comedy Series",
+              "Search for Crime Series",
+              "Search for Documentary Series",
+              "Search for Fantasy Series",
+              "Search for Mystery Series",
             ]}
             className="w-1/2"
             typeSpeed={40}
@@ -125,37 +121,37 @@ const Movie = () => {
         </div>
         {/* advanced code search section */}
         <div className="advance-search">
-          <AdvanceSearch url={`https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=4e041fd34844514d59b1259e22d9930b`} type="movie"/>       
+          <AdvanceSearch url={`https://api.themoviedb.org/3/genre/tv/list?language=en`} type="tv" />       
         </div>
       </div>
       <div className="base-page">
       <div >
         <TrendingComponent
-          title="Action Movies"
-          url="https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=28"
-          type="movie"
+          title="Action & Adventure"
+          url="https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=10759"
+          type="tv"
         />
       </div>
       <div>
         <TrendingComponent
-          title="Adventure Movies"
-          url="https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&with_genres=12"
-          type="movie"
+          title="Comedy Tv"
+          url="https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=35"
+          type="tv"
         />
       </div>
       <div>
         <TrendingComponent
-          title="Horror Movies"
-          url="https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&with_genres=27"
-          type="movie"
+          title="Mystery Tv"
+          url="https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=9648"
+          type="tv"
         />
       </div>
       <div>
-        <Collections urlType="movie" />
+        <Collections urlType="tv" />
       </div>
       </div>
     </div>
   );
 };
 
-export default Movie;
+export default Tv;

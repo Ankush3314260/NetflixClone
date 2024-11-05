@@ -12,7 +12,7 @@ import { Navigation } from "swiper/modules";
 interface Props {
   ids: string;
 }
-const CastforDetails: React.FC<Props> = ({ ids }) => {
+const Tvcastdetails: React.FC<Props> = ({ ids }) => {
   const [cast, setCast] = useState<CastMember[]>([]);
   const [flag,setFlag]=useState<boolean>(true)
 const nextRef = useRef<HTMLDivElement>(null);
@@ -20,7 +20,7 @@ const nextRef = useRef<HTMLDivElement>(null);
   const getCast = async () => {
     try {
       const { data } = await axios.get<MovieCredits>(
-        `https://api.themoviedb.org/3/movie/${ids}/credits?language=en-US&&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/tv/${ids}/credits?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
       console.log(data.cast);
       setCast(
@@ -46,7 +46,7 @@ const nextRef = useRef<HTMLDivElement>(null);
             {cast.length != 0  && cast.length >= 4 ?(
              <div className="">
              <p className="text-[0.4em] text-white mx-[5%] py-[1em]">
-               Popular Cast
+               CAST
              </p>
              <div className="  flex items-center  ">
                <div
@@ -177,9 +177,7 @@ const nextRef = useRef<HTMLDivElement>(null);
              </div>
            </div>
             ) : (
-              <div className="flex justify-center items-center ">
-               {cast.length != 0?"":<Loader/>}
-              </div>
+             ""
             )}
           </div>):('')
         }
@@ -188,7 +186,7 @@ const nextRef = useRef<HTMLDivElement>(null);
   );
 };
 
-export default CastforDetails;
+export default Tvcastdetails;
 
 
 

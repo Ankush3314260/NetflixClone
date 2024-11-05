@@ -6,7 +6,7 @@ import "swiper/css";
 import Loader from "@/app/Loader";
 import "swiper/css/navigation";
 import { Movie } from "@/app/utility/types";
-import { MoviesResponse } from "@/app/utility/types";
+import { MoviesResponse,ShowResult,ShowResultsResponse } from "@/app/utility/types";
 import Link from "next/link";
 import { Navigation } from "swiper/modules";
 import axios from "axios";
@@ -14,14 +14,15 @@ import axios from "axios";
 interface Props{
     title:string,
     url:string
+    type:string
 }
-const TrendingComponent :React.FC<Props>=({title,url}) => {
-  const [trending, setTrending] = useState<Movie[]>([]);
+const TrendingComponent :React.FC<Props>=({title,url,type}) => {
+  const [trending, setTrending] = useState<(Movie | ShowResult)[]>([]);
   const nextRef = useRef<HTMLDivElement>(null);
   const prevRef = useRef<HTMLDivElement>(null);
-  const fetchTrending = async () => {
+  const fetchMoviesTrending = async () => {
     try {
-      const { data } = await axios.get<MoviesResponse>(
+      const { data } = await axios.get(
         `${url}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
       // console.log(data.results);
@@ -30,8 +31,13 @@ const TrendingComponent :React.FC<Props>=({title,url}) => {
       console.log(error);
     }
   };
+
   useEffect(() => {
-    fetchTrending();
+   
+      fetchMoviesTrending();  
+    
+   
+   
   }, []);
   return (
     <div className="bg-[#050505] pt-[0.5em]   text-white z-10">
@@ -119,12 +125,13 @@ const TrendingComponent :React.FC<Props>=({title,url}) => {
                   }
                 }}
               >
-                {trending.map((movie: Movie, index: number) => {
+                {trending.map((movie: Movie | ShowResult, index: number) => {
+                   const isMovie = (movie as Movie).release_date !== undefined;
                   return (
                     <div key={index} className="w-[50%] relative ">
                     
                       <SwiperSlide key={movie.id}>
-                      <Link href={`/explore/movies/details/${movie.title}capo-${movie.id}`}>
+                      <Link href={`/explore/${type=='movie'?"movies":"tv"}/details/${isMovie?(movie as Movie).title:(movie as ShowResult).original_name}capo-${movie.id}`}>
                         <Image
                           width="350"
                           height="350"
@@ -145,7 +152,7 @@ const TrendingComponent :React.FC<Props>=({title,url}) => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-50 flex justify-end cursor-pointer"
+                className=" text-center relative z-30 flex justify-end cursor-pointer"
                 aria-label="Next Slide"
               >
                 <svg

@@ -12,10 +12,11 @@ import Link from "next/link";
 interface props{
   vote:number,
   year:number,
-  genres:string
+  genres:string,
+  type:string
 
 }
-const AdvanceSearchResult :React.FC<props>= ({vote,year,genres}) => {
+const AdvanceSearchResult :React.FC<props>= ({vote,year,genres,type}) => {
   
   const [collectionMovies, setCollectionmovies] = useState<Movie[]>([]);
   const [totalResult, setResult] = useState<number>(0);
@@ -26,7 +27,7 @@ const AdvanceSearchResult :React.FC<props>= ({vote,year,genres}) => {
         try {
             if (countPage <= totalResult || countPage == 1) {
               const { data } = await axios.get<MoviesResponse>(
-                `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${countPage}&primary_release_year=${year}&sort_by=popularity.desc&vote_average.lte=${vote}&with_genres=${genres}}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+                `https://api.themoviedb.org/3/discover/${type=='movie'?"movie":"tv"}?include_adult=false&include_video=false&language=en-US&page=${countPage}&${type=='movie'?"primary_release_year":"first_air_date_year"}=${year}&sort_by=popularity.desc&vote_average.lte=${vote}&with_genres=${genres}}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
               );
               setCountpage((prev) => prev + 1);
               setCollectionmovies((prev) => [...prev, ...data.results]);
@@ -84,7 +85,7 @@ const AdvanceSearchResult :React.FC<props>= ({vote,year,genres}) => {
                   if (items.poster_path) {
                     return (
                       <div key={index} className="  ">
-                        <Link href={`/explore/movies/details/${items.title}capo-${items.id}`}>
+                        <Link href={`/explore/${type=='movie'?"movies":"tv"}/details/${items.title}capo-${items.id}`}>
                         {
                           items.poster_path?(<Image
                             src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
@@ -103,7 +104,38 @@ const AdvanceSearchResult :React.FC<props>= ({vote,year,genres}) => {
                 })}
           
             
-          </InfiniteScroll>):("sfsdsdsddd")
+          </InfiniteScroll>):(  <div className="min-h-svh flex justify-center items-center">
+          <div className="max-[5%] w-3/5 text-center">
+            <Image
+              className="m-auto"
+              src="/images/Logonetflix.png"
+              alt="netflix logo"
+              width="500"
+              height="500"
+            />
+            <p>0:Result </p>
+            <p className="text-[0.3em] opacity-50">
+              Make sure your title matches the movie title
+            </p>
+
+            <Link className="pt-[0.5em] block" href="/explore/movies/">
+              {" "}
+              <button className=" flex items-center py-[0.2em] px-[0.8em] rounded-sm m-auto bg-[#E70713] transition-all duration-300 hover:bg-[#C11119] text-[0.3em]">
+                <span className=" flex justify-end">
+                  <svg
+                    className="w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill="#FFFFFF"
+                  >
+                    <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+                  </svg>
+                </span>{" "}
+                <span className="">BACK</span>
+              </button>
+            </Link>
+          </div>
+        </div>)
         }
      
       </div>
