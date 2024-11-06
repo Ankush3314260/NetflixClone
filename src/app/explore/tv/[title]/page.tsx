@@ -65,10 +65,6 @@ const SearchPage: React.FC = () => {
       collectMovies();
     }
 
-    // Decode and replace "+" with spaces
-    // console.log(title);
-    // setDecodedTitle(decodeURIComponent(title).replace(/\+/g, ' '));
-
     return () => {
       setCollectionmovies([]);
       setCountpage(1);

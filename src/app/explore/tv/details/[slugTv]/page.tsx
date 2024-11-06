@@ -133,7 +133,7 @@ const Page = () => {
     return <ErrorPage error={error} />;
   }
   return (
-    <div className="min-h-svh relative">
+    <div className="min-h-svh relative overflow-x-hidden">
       {details ? (
         <div className="">
           {details ? (
@@ -223,62 +223,54 @@ const Page = () => {
                 {/* season and episode details */}
                 <div>
                   {id ? (
-                    // air_date
-                    // :
-                    // "2024-06-17"
-                    // episode_count
-                    // :
-                    // 56
-                    // id
-                    // :
-                    // 397574
-                    // name
-                    // :
-                    // "Season 1"
-                    // overview
-                    // :
-                    // ""
-                    // poster_path
-                    // :
-                    // "/hlRhstt3Du57qm4A30w7RkHqEXg.jpg"
-                    // season_number
-                    // :
-                    // 1
-                    // vote_average
-                    // :
-                    // 0
                     <div className="relative z-20 mx-[5%] text-[0.75em]">
+                      <h2>SEASONS</h2>
                       {details.seasons.length != 0 &&
                       details.seasons[0].poster_path != null ? (
                         <div>
-                          <h2>SEASON</h2>
-                          <div className="sm:grid-cols-5 max-sm:grid-cols-3 grid gap-[1%]">
+                          <div className="sm:grid-cols-5 max-sm:grid-cols-4 grid gap-[1%]">
                             {details.seasons.map(
                               (season: Season, index: number) => {
-                                return (
-                                  <div key={index}>
-                                    <h6>S{index + 1}</h6>
-                                    <div className="">
-                                      {season.poster_path !== null ? (
-                                        <Image
-                                          width="500"
-                                          height="1000"
-                                          alt="poster"
-                                          src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}
-                                          className="border-[1px] hover:border-[#E70713] transition-all duration-300 border-[#050505]"
-                                        />
-                                      ) : (
-                                        ""
-                                      )}
+                                if (season.poster_path) {
+                                  return (
+                                    <div key={index}>
+                                      <h6>S{index + 1}</h6>
+                                      <div className="">
+                                        {season.poster_path !== null ? (
+                                          <Link
+                                            href={`/explore/tv/details/season/${details.name}-SeasonNo${season.season_number}Episodes-${id}`}
+                                          >
+                                            <Image
+                                              width="500"
+                                              height="1000"
+                                              alt="poster"
+                                              src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}
+                                              className="border-[1px] hover:border-[#E70713] transition-all duration-300 border-[#050505]"
+                                            />
+                                          </Link>
+                                        ) : (
+                                          ""
+                                        )}
+                                      </div>
                                     </div>
-                                  </div>
-                                );
+                                  );
+                                }
+                               
                               }
                             )}
                           </div>
                         </div>
                       ) : (
-                        ""
+                        <div className="w-1/5">
+                          <h2>S1</h2>
+                        <Image
+                          width="500"
+                          height="1000"
+                          alt="poster"
+                          src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
+                          className="border-[1px] hover:border-[#E70713] transition-all duration-300 border-[#050505]"
+                        />
+                        </div>
                       )}
                     </div>
                   ) : (

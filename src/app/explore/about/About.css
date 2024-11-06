@@ -1,0 +1,43 @@
+.myimageshadow::before{
+    content: " ";
+    position: absolute;
+    right: 0;
+    overflow: visible;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    background-image: linear-gradient(
+      to right,
+      rgba(5, 5, 5, 1) 5%,
+      rgba(0, 0, 0, 0.000001) 45%
+      
+    );
+}
+.myimageshadow::after{
+    content: " ";
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  background-image: linear-gradient(
+    to left,
+    rgba(5, 5, 5, 1) 10%,
+    rgba(0, 0, 0, 0.001) 50%
+  );
+}
+
+.headinngs{
+    opacity: 0;
+}
+.projectoverview{
+    opacity: 0;
+}
+.aboutAuthor{
+    opacity: 0;
+}
+.myimageshadow{
+    display: none;
+}

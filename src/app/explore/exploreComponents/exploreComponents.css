@@ -127,3 +127,59 @@
 .closeMenu{
     clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
 } */
+
+.epsisodeshadow::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 80%;
+  z-index: 2;
+  background-image: linear-gradient(
+    to right,
+    rgba(5, 5, 5, 1) 30%,
+    rgba(0, 0, 0, 0.0001) 110%
+  );
+}
+.castofseasonShadow::before{
+  content: " ";
+  position: absolute;
+  right: 0;
+  overflow: visible;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background-image: linear-gradient(
+    to right,
+    rgba(5, 5, 5, 1) 5%,
+    rgba(0, 0, 0, 0.000001) 45%
+    
+  );
+  /* background-color: aqua; */
+}
+.castofseasonShadow::after{
+  content: " ";
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  background-image: linear-gradient(
+    to left,
+    rgba(5, 5, 5, 1) 10%,
+    rgba(0, 0, 0, 0.001) 50%
+  );
+  /* background-color: aqua; */
+}
+
+.slidecastanimation{
+      animation: slides 10s linear infinite;
+}
+@keyframes slides{
+  to{
+    transform: translateX(-100%);
+  }
+}

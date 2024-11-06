@@ -107,7 +107,7 @@ export default function RootLayout({
                   </Link>
                 </li>
                 <li className="nav-link">
-                  <Link className="nav-text" href="" >
+                  <Link className="nav-text" href="/explore/about" >
                     About
                   </Link>
                 </li>
@@ -134,10 +134,10 @@ export default function RootLayout({
       <div className="mx-[10%] border-t-[1px] border-red-600 relative z-50">
         <div className=" text-white min-h-screen py-[1em]">
           <div className="py-5 ">
-            <p className="text-[#AFAFAF] text-[0.35em] py-5">
+            <p className="text-[#AFAFAF] text-[0.5em] py-5">
               Questions? Call XXX-XXX-XXX-XX24
             </p>
-            <div className="text-[0.29em]  text-[#AFAFAF] footer-content">
+            <div className="text-[0.25em] max-sm:text-[0.3em]  text-[#AFAFAF] footer-content">
               <ul>
                 <li>FAQ</li>
                 <li>Investor Relations</li>

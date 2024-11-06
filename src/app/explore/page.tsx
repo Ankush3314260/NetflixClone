@@ -62,13 +62,13 @@ const Page = () => {
             <TrendingNow/>
           </div>
           <div>
-            <TrendingComponent title="Trending Movies Now" url="https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"/>
+            <TrendingComponent title="Trending Movies Now" url="https://api.themoviedb.org/3/movie/popular?language=en-US&page=1" type="movie"/>
           </div>
           <div>
-            <TrendingComponent title=" Trending TV Now" url="https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc"/>
+            <TrendingComponent title=" Trending TV Now" url="https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc" type="tv"/>
           </div>
           <div>
-            <TrendingComponent title="In Cinemas Now" url="https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=2"/>
+            <TrendingComponent title="In Cinemas Now" url="https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=2" type="movie"/>
           </div>
           <div className="py-[1em]">
             <TrendingCast/>
