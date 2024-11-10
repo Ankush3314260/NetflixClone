@@ -54,7 +54,7 @@ const Page = () => {
     <div>
       {/* {seasonNumber}df{seasonid} */}
       {sDetail ? (
-        <div className="mx-[5%] text-gray-200 ">
+        <div className="mx-[5%] text-gray-200 relative z-[99999999] ">
           {/* posterdetails */}
           <div className="flex ">
             <div className="w-1/5">
@@ -81,61 +81,62 @@ const Page = () => {
                     Imdb
                   </span>{" "}
                 </p>
-                <div className=" w-full">
-
-                  <p className="text-[0.45em] pt-[0.5em]">{(sDetail.episodes.length!=0 && sDetail.episodes[0].guest_stars.length!=0)?"Cast of the season":""}</p>
-                  <div className="castofseasonShadow relative overflow-hidden">
-                    {sDetail.episodes.length != 0 ? (
-                      <div className=" slidecastanimation flex ">
-                      <div className="flex justify-evenly mx-[1%] gap-[1%]  min-w-full">
-                        {sDetail.episodes[
-                          0
-                        ].guest_stars.map((ep: GuestStar, index: number) => {
-                          if (ep.profile_path!=null) {
-                            return (
-                              <div key={index} className="min-w-[5%] max-w-[20%] ">
-                                <Image
-                                  width="200"
-                                  height="200"
-                                  alt="poster"
-                                  src={`https://image.tmdb.org/t/p/w500/${ep.profile_path}`}
-                                  className="border-[1px] border-[#E70713] transition-all duration-300  "
-                                />
-                              </div>
-                            ); 
-                          }
-                         
-                        })}
-                        </div>
-                        <div className="flex justify-evenly  gap-[1%]  min-w-full">
-                        {sDetail.episodes[
-                          0
-                        ].guest_stars.map((ep: GuestStar, index: number) => {
-                          if (ep.profile_path!=null) {
-                            return (
-                              <div key={index} className="min-w-[5%] max-w-[20%] ">
-                                <Image
-                                  width="200"
-                                  height="200"
-                                  alt="poster"
-                                  src={`https://image.tmdb.org/t/p/w500/${ep.profile_path}`}
-                                  className="border-[1px] border-[#E70713] transition-all duration-300"
-                                />
-                              </div>
-                            ); 
-                          }
-                         
-                        })}
-                        </div>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
+               
               </div>
             </div>
           </div>
+          <div className=" w-full">
+
+<p className="text-[0.45em] pt-[0.5em]">{(sDetail.episodes.length!=0 && sDetail.episodes[0].guest_stars.length!=0)?"Cast of the season":""}</p>
+<div className="castofseasonShadow relative overflow-hidden">
+  {sDetail.episodes.length != 0 ? (
+    <div className=" slidecastanimation flex gap-[1%] ">
+    <div className="flex justify-between  gap-[1%]  min-w-full">
+      {sDetail.episodes[
+        0
+      ].guest_stars.map((ep: GuestStar, index: number) => {
+        if (ep.profile_path!=null) {
+          return (
+            <div key={index} className="min-w-[5%] max-w-[20%] ">
+              <Image
+                width="200"
+                height="200"
+                alt="poster"
+                src={`https://image.tmdb.org/t/p/w500/${ep.profile_path}`}
+                className="border-[1px] border-[#E70713] transition-all duration-300  "
+              />
+            </div>
+          ); 
+        }
+       
+      })}
+      </div>
+      <div className="flex justify-between   gap-[1%]  min-w-full">
+      {sDetail.episodes[
+        0
+      ].guest_stars.map((ep: GuestStar, index: number) => {
+        if (ep.profile_path!=null) {
+          return (
+            <div key={index} className="min-w-[5%] max-w-[20%] ">
+              <Image
+                width="200"
+                height="200"
+                alt="poster"
+                src={`https://image.tmdb.org/t/p/w500/${ep.profile_path}`}
+                className="border-[1px] border-[#E70713] transition-all duration-300"
+              />
+            </div>
+          ); 
+        }
+       
+      })}
+      </div>
+    </div>
+  ) : (
+    ""
+  )}
+</div>
+</div>
           <div>
             {sDetail.episodes.length != 0 ? (
               <div>

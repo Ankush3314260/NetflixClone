@@ -101,7 +101,7 @@ const TrendingNow = () => {
             loop={shouldLoop}
             slidesPerView={1}
             slidesPerGroup={1}
-            className="mySwiper"
+            className="mySwiper fade-crousal"
             breakpoints={{
               640: {
                 slidesPerView: 1,

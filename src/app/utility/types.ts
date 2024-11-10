@@ -319,3 +319,13 @@ export interface SpokenLanguage {
     popularity: number;
     profile_path: string;
   }
+export interface NewMovieResponse {
+    dates: {
+      maximum: string;
+      minimum: string;
+    };
+    page: number;
+    results: Movie[];
+    total_pages: number;
+    total_results: number;
+  }

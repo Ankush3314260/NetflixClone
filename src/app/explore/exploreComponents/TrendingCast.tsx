@@ -41,13 +41,13 @@ const TrendingCast: React.FC = () => {
             <p className="text-[0.4em] text-white mx-[5%] py-[1em]">
               Popular Cast
             </p>
-            <div className="crousal  flex justify-evenly items-center  ">
+            <div className="crousal  flex justify-evenly items-center   ">
               <div
                 ref={prevRef}
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-40 flex  cursor-pointer "
+                className=" text-center relative z-40 flex  cursor-pointer max-mob:hidden "
                 aria-label="Previous Slide"
               >
                 <svg
@@ -70,12 +70,12 @@ const TrendingCast: React.FC = () => {
                 spaceBetween={50}
                 modules={[Navigation]}
                 slidesPerView={4.6}
-                className="mySwiper  relative"
+                className="mySwiper  relative fade-crousal"
                 breakpoints={{
                   50: {
-                    slidesPerView: 2,
-                    slidesPerGroup: 1,
-                    spaceBetween:  10,
+                    slidesPerView: 2.7,
+                    slidesPerGroup: 2,
+                    spaceBetween:  4,
                     speed: 500,
                   },
                   400: {
@@ -118,11 +118,11 @@ const TrendingCast: React.FC = () => {
                   return (
                     <div key={index} className="  border-2 p-2">
                       <SwiperSlide key={movie.id}>
-                        <div className=" rounded-full border-2 p-2 max-mob:p-1 max-mob:border-[1px] max-mob:flex max-mob:justify-center relative hover:border-[#E70713] transition-all duration-300">
+                        <div className=" rounded-full  max-mob:flex max-mob:justify-center relative ">
                           <Image
                             width="350"
                             height="350"
-                            className=" w-[20vw] h-[16vw] rounded-full object-cover "
+                            className=" w-[4em] h-[4em]   rounded-full object-cover border-[1px] hover:border-[#E70713] transition-all duration-300 p-1 sm:p-2 "
                             src={`https://image.tmdb.org/t/p/w500/${movie.profile_path}`}
                             alt="Movieposter"
                           />
@@ -153,7 +153,7 @@ const TrendingCast: React.FC = () => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-50 flex justify-end cursor-pointer"
+                className=" text-center relative z-50 flex justify-end cursor-pointer max-mob:hidden "
                 aria-label="Next Slide"
               >
                 <svg

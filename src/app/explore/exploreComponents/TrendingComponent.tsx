@@ -6,7 +6,7 @@ import "swiper/css";
 import Loader from "@/app/Loader";
 import "swiper/css/navigation";
 import { Movie } from "@/app/utility/types";
-import { MoviesResponse,ShowResult,ShowResultsResponse } from "@/app/utility/types";
+import { ShowResult } from "@/app/utility/types";
 import Link from "next/link";
 import { Navigation } from "swiper/modules";
 import axios from "axios";
@@ -40,7 +40,7 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
    
   }, []);
   return (
-    <div className="bg-[#050505] pt-[0.5em]   text-white z-10">
+    <div className=" pt-[0.5em]   text-white z-10">
       {/* divider section */}
     
       {/* trending section */}
@@ -56,7 +56,7 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-40 flex  cursor-pointer "
+                className=" text-center relative z-40 flex  cursor-pointer max-mob:hidden"
                 aria-label="Previous Slide"
               >
                 <svg
@@ -82,9 +82,9 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                 className="mySwiper  relative fade-crousal"
                 breakpoints={{
                     50:{
-                        slidesPerView: 1.5,
-                        slidesPerGroup: 1,
-                        spaceBetween:30,
+                        slidesPerView: 2.5,
+                        slidesPerGroup: 2,
+                        spaceBetween:10,
                         speed:500
                     },
                     400:{
@@ -135,7 +135,7 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                         <Image
                           width="350"
                           height="350"
-                          className="transition-all hover:duration-600 duration-500 border-2 border-[#050505]  flex items-center justify-center hover:border-[2px] hover:border-[#E70713]"
+                          className="transition-all hover:duration-600 duration-500 border-2 border-[#05050500]  flex items-center justify-center hover:border-[2px] hover:border-[#E70713]"
                           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                           alt="Moviepoater"
                         />
@@ -152,7 +152,7 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-30 flex justify-end cursor-pointer"
+                className=" text-center relative z-30 flex justify-end cursor-pointer max-mob:hidden"
                 aria-label="Next Slide"
               >
                 <svg

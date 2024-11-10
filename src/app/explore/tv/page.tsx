@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import PageTransition from '../exploreComponents/pageTransition';
 import TrendingComponent from "../exploreComponents/TrendingComponent";
 import Collections from "../exploreComponents/Collections";
 import { ReactTyped } from "react-typed";
@@ -47,7 +46,7 @@ const Tv = () => {
     };
   }, []);
   return (
-    <div className="bg-[#050505] min-h-screen text-white relative">
+    <div className="min-h-screen text-white relative">
       {/* <div className="bg-[#050505] z-50 fixed top-0 left-0 right-0 bottom-0 animation-container ">
             <PageTransition/>
         </div> */}
@@ -88,14 +87,14 @@ const Tv = () => {
             loop
           >
             <input
-              className="text-[0.35em] bg-white px-[0.8em] translate-x-[3.5%] flex items-center py-2 rounded-full outline-none text-black bg-transparent w-full  "
+              className="text-[0.35em] caret-[#E70713] max-sm:text-[0.45em] bg-[#000000a6] px-[1em] translate-x-[3.5%] flex items-center py-[0.5em] rounded-full outline-none text-[#E70713]  w-full  "
               type="text"
               required
               onKeyDown={handleSearch}
               onChange={(e)=>setSearch(e.target.value)}
             />
           </ReactTyped>
-          <span className="w-[3%] max-mob:w-[5%] -translate-x-[65%] bg-white rounded-e-full cursor-pointer" onClick={handleNavigate}>
+          <span className="w-[3%] max-mob:w-[5%] -translate-x-[65%] rounded-e-full cursor-pointer" onClick={handleNavigate}>
         
             <svg
               xmlns="http://www.w3.org/2000/svg"
