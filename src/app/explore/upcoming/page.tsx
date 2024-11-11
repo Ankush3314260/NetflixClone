@@ -75,7 +75,7 @@ const Page = () => {
                     <div key={index} className="min-w-[15%] ">
                       <Link href={``}>
                       <Image
-                      className="border-[1px] border-[#E70713]"
+                      className="border-[0.5px] border-[#E70713]"
                         width="200"
                         height="200"
 
@@ -91,7 +91,7 @@ const Page = () => {
                     <div key={index} className="min-w-[15%] ">
                       <Link href={``}>
                       <Image
-                      className="border-[1px] border-[#E70713] cursor-pointer"
+                      className="border-[0.5px] border-[#E70713] cursor-pointer"
                         width="200"
                         height="200"
 
@@ -121,7 +121,7 @@ const Page = () => {
                     <div key={index} className="min-w-[15%]  ">
                         <Link href={``}>
                       <Image
-                      className="border-[1px] border-[#E70713]"
+                      className="border-[0.5px] border-[#E70713]"
                         width="200"
                         height="200"
 
@@ -137,7 +137,7 @@ const Page = () => {
                     <div key={index} className="min-w-[15%] ">
                       <Link href={``}>
                       <Image
-                      className="border-[1px] border-[#E70713]"
+                      className="border-[0.5px] border-[#E70713]"
                         width="200"
                         height="200"
 
