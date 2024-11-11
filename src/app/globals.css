@@ -101,3 +101,11 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(max(100px,23%),1fr));
 }
+html, body {
+  overflow-y: scroll; /* Ensures scrollability */
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in WebKit browsers (Chrome, Safari) */
+}

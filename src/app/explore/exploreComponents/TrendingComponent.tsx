@@ -81,13 +81,14 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                 spaceBetween={50}
                 modules={[Navigation]}
                 slidesPerView={4.6}
+                cssMode={true}
                 className="mySwiper  relative fade-crousal"
                 breakpoints={{
                     50:{
                         slidesPerView: 2.5,
                         slidesPerGroup: 2,
                         spaceBetween:10,
-                        speed:500
+                        speed:200
                     },
                     400:{
                         slidesPerView: 2.5,

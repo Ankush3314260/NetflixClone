@@ -33,10 +33,11 @@ const Intro: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const introAnimation = () => {
     gsap.matchMedia().add("(max-width: 640px)", () => {
+      window.scrollTo(0,0)
       // Add an "overflow-hidden" class to <html> and <body> initially
       document.documentElement.classList.add("overflow-hidden");
       document.body.classList.add("overflow-hidden");
-    
+  
       const time = gsap.timeline({});
       time
         .to(".loader-images", {
@@ -94,6 +95,7 @@ const Intro: React.FC = () => {
       };
     });
     gsap.matchMedia().add("(min-width:641px)", () => {
+      window.scrollTo(0,0)
       document.documentElement.classList.add("overflow-hidden");
       document.body.classList.add("overflow-hidden");
     
@@ -188,8 +190,8 @@ const Intro: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative bg-[#101010] min-h-screen max-sm:min-h-svh  text-white flex items-center ">
-      <div className="image-container flex sm:gap-[2%] justify-evenly max-sm:gap-[10px]  items-center ">
+    <div className="relative bg-[#101010] min-h-screen max-sm:min-h-svh z-50 text-white flex items-center ">
+      <div className="image-container flex sm:gap-[2%] justify-evenly max-sm:gap-[10px] relative z-50  items-center ">
         {movies.length === 0 ? (
           <div className="m-auto ">{/* <Loader /> */}</div>
         ) : (

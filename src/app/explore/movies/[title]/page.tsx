@@ -80,7 +80,7 @@ const SearchPage: React.FC = () => {
     <div>
     <div className="mx-[10%] ">
 
-      <p className="text-[0.45em] font-custom-bold pt-[2em]">
+      <p className="text-[0.45em] font-custom-bold pt-[2em] z-50 relative">
         Search Result For :{decodeURIComponent(decodedTitle)}
       </p>
       {collectionMovies.length !== 0 ? (

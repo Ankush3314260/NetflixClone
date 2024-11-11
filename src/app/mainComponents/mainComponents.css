@@ -45,3 +45,8 @@
     );
     
 }
+@media (max-width:640px) {
+    .swiper-wrapper {
+        transition-timing-function: linear !important; /* Forces linear easing */
+      }
+}

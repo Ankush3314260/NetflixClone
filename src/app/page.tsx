@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       <div className="intro-section absolute top-0 z-30  overflow-hidden ">
         <Intro />
       </div>
-      <div className="relative min-h-screen max-sm:min-h-svh  bg-[url('/images/IN-en-20241014-TRIFECTA-perspective_e7121311-c11e-4809-a3e6-22abffa33569_small.jpg')] bg-cover home-after-animation opacity-0">
+      <div className="relative sm:min-h-svh  bg-[url('/images/IN-en-20241014-TRIFECTA-perspective_e7121311-c11e-4809-a3e6-22abffa33569_small.jpg')] bg-cover home-after-animation opacity-0">
         <div className="absolute z-0 bg-[#000000c2] top-0 left-0 bottom-0 right-0"></div>
         <div className="navbar-section  relative z-10 py-[25px]   w-[83%] m-auto">
           <nav className=" flex justify-between items-center flex-wrap">
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
               />
             </div>
             <div className="flex items-center  space-x-3 sm:w-2/5 max-sm:w-[70%] min-w-[100px]    justify-end">
-              <button className="flex text-[0.20em] items-center space-x-1 sm:w-[30%] max-sm:w-[30%] border-[1px] border-white justify-center min-w-[40px]  bg-[#000000a8] text-white py-[5px] px-1">
+              <button className="flex text-[0.20em] max-sm:text-[0.3em] items-center space-x-1 sm:w-[30%] max-sm:w-[30%] border-[1px] border-white justify-center min-w-[40px]  bg-[#000000a8] text-white py-[5px] px-1">
                 {" "}
                 <span className="block">
                   <svg
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
                 </span>{" "}
                 <span className="block">Language</span>
               </button>
-              <button className="flex justify-center items-center space-x-1 w-[18%] min-w-[30px] max-sm:[30%] bg-[#E50914] sm:py-[7.8px] max-sm:py-[5px] px-[0.6em] text-white text-[0.23em]  sm:rounded-md max-sm:rounded-sm hover:bg-[#C11119] font-bold">
+              <button className="flex justify-center items-center space-x-1 w-[18%] min-w-[30px] max-sm:[30%] bg-[#E50914] sm:py-[7.8px] max-sm:py-[5px] px-[0.6em] text-white text-[0.23em] max-sm:text-[0.3em]  sm:rounded-md max-sm:rounded-sm hover:bg-[#C11119] font-bold">
                 {" "}
                 Sign In
               </button>
@@ -60,15 +60,15 @@ const Home: React.FC = () => {
           </nav>
         </div>
         {/* the text section for unlimited movies */}
-        <div className="unlimited-section max-sm:py-[3em] sm:min-h-screen relative z-10 text-white ">
-          <div className="leading-snug">
-            <div className="mx-[25%] max-mob:mx-[15%] text-[0.9em] text-center font-custom-bold pt-[1em]">
+        <div className="unlimited-section max-sm:py-[1em] sm:py-[1em]  sm:min-h-screen relative z-10 text-white ">
+          <div className="leading-tight">
+            <div className="mx-[25%] max-mob:mx-[15%] text-[0.9em] text-center  font-custom-bold ">
               <p>Unlimited movies, TV shows and more</p>
             </div>
-            <p className="text-[0.35em] min-text-[12px] m-auto text-center pt-[1em] font-custom-bold ">
+            <p className="text-[0.39em] min-text-[12px] m-auto text-center pt-[1em] font-custom-bold ">
               Starts at ₹149. Cancel at any time.
             </p>
-            <p className="text-[0.25em] min-text-[10px] m-auto text-center py-[1.7em] leading-snug">
+            <p className="text-[0.35em] min-text-[10px] m-auto text-center py-[1.7em] leading-snug">
               Ready to watch? Enter your email to create or restart your
               membership.
             </p>
@@ -91,6 +91,9 @@ const Home: React.FC = () => {
           </div>
         </div>
         {/* lets explore button */}
+       <div className="max-sm:visible sm:hidden">
+       <br /> <br />
+       </div>
       </div>
 
       {/* trending section */}
@@ -101,7 +104,7 @@ const Home: React.FC = () => {
       <br />
       {/* more reason to join the netflix container */}
       <div className="mx-[10%] text-white bg-[#050505]">
-        <h2 className="text-[0.45em]    max-sm:text-[0.65em] py-[10px] ">
+        <h2 className="text-[0.45em]  max-sm:text-[0.75em]  max-sm:text-[0.65em] py-[10px] ">
           More reasons to join
         </h2>
         {/* section for containers of explaining */}
@@ -869,7 +872,7 @@ Kids profiles come with PIN-protected parental controls that let you restrict th
         {/* footer  section*/}
       </div>
       {/* footer section */}
-      <div className="mx-[10%] text-white min-h-screen max-sm:min-h-svh py-[1em]">
+      <div className="mx-[10%] text-white sm:min-h-svh py-[1em]">
         <p className="text-[0.3em] text-center py-5">
           Ready to watch? Just Click on the button below to explore
         </p>

@@ -54,7 +54,7 @@ const TrendingCrousal = () => {
       <div className="sm:mx-[3%] ">
         {Object.keys(trending).length !== 0 ? (
           <div className="">
-            <p className="text-[0.4em] text-white mx-[5%] py-[1em]">
+            <p className="text-[0.4em] max-sm:text-[0.75em] text-white mx-[5%] py-[1em] relative z-10">
               Trending Now
             </p>
             <div className="crousal  flex justify-evenly items-center  ">
@@ -86,6 +86,7 @@ const TrendingCrousal = () => {
                 spaceBetween={50}
                 modules={[Navigation]}
                 slidesPerView={4.6}
+                cssMode={true}
                 className="mySwiper  relative"
                 breakpoints={{
                     50:{
