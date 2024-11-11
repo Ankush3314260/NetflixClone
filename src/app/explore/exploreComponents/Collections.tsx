@@ -43,17 +43,17 @@ const Collections:React.FC<props> = ({urlType}) => {
     collectMovies();
   }, []);
   return (
-    <div className="mx-[10%]">
-      <p className="text-[0.45em] font-custom-bold pt-[2em]">
+    <div className="mx-[5%]">
+      <p className="text-[0.45em] max-sm:text-[0.65em] font-custom-bold pt-[2em]">
         All Movies Collection{" "}
       </p>
 
-      <div className="min-h-svh  pt-[1em]">
+      <div className="sm:min-h-svh  pt-[1em]">
         <InfiniteScroll
           dataLength={collectionMovies.length} //This is important field to render the next data
           next={collectMovies}
           hasMore={more}
-          className="All-collection min-h-svh space-x-2"
+          className="All-collection min-h-svh "
           loader={
             <h4 className="text-[0.35em]">
              Loading....

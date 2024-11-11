@@ -49,7 +49,7 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
       <div className="mx-[5%] ">
         {Object.keys(trending).length !== 0 ? (
           <div className="">
-            <p className="text-[0.4em] text-white mx-[5%] py-[1em] font-custom-bold ">
+            <p className="text-[0.4em] max-sm:text-[0.55em] text-white mx-[5%] py-[1em] font-custom-bold ">
                {title}
             </p>
             <div className="crousal  flex justify-evenly items-center  ">
