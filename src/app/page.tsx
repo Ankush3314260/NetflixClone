@@ -97,14 +97,14 @@ const Home: React.FC = () => {
       </div>
 
       {/* trending section */}
-      <div className=" shadows-crousal relative">
+      <div className=" shadows-crousal relative home-after-animation opacity-0" >
         {/* <TrendingNow/> */}
         <TrendingCrousal />
       </div>
       <br />
       {/* more reason to join the netflix container */}
-      <div className="mx-[10%] text-white bg-[#050505]">
-        <h2 className="text-[0.45em]  max-sm:text-[0.75em]  max-sm:text-[0.65em] py-[10px] ">
+      <div className="mx-[10%] text-white bg-[#050505] ">
+        <h2 className="text-[0.45em]  max-sm:text-[0.75em]   py-[10px] ">
           More reasons to join
         </h2>
         {/* section for containers of explaining */}
