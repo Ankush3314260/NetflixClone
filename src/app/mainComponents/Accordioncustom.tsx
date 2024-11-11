@@ -13,7 +13,7 @@ const Accordioncustom: React.FC<Props> = ({ title, answer }) => {
         onClick={() => {
           setOpenclose(!opeclose);
         }}
-        className="w-full justify-between flex hover:bg-[#414141] bg-[#2d2d2d] p-[18px] border-b-[1px] border-[#050505]"
+        className="w-full justify-between flex hover:bg-[#414141] bg-[#2d2d2d] max-sm:rounded-md p-[18px] border-b-[1px] border-[#050505]"
       >
         <span className=" w-4/5 text-start  ">{title}</span>
         {opeclose ? (
@@ -41,7 +41,7 @@ const Accordioncustom: React.FC<Props> = ({ title, answer }) => {
         )}
       </button>
       <div
-        className={`grid overflow-hidden transition-all duration-300 ease-in-out bg-[#2d2d2d]  ${
+        className={`grid overflow-hidden transition-all duration-300 ease-in-out bg-[#2d2d2d] max-sm:rounded-md  ${
           opeclose
             ? "grid grid-rows-[1fr] opacity-100 p-[18px]"
             : "grid grid-rows-[0fr] opacity-0"
