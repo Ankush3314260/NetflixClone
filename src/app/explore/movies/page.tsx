@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import PageTransition from '../exploreComponents/pageTransition';
 import TrendingComponent from "../exploreComponents/TrendingComponent";
 import Collections from "../exploreComponents/Collections";
 import { ReactTyped } from "react-typed";

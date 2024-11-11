@@ -24,7 +24,9 @@ const TrendingCast: React.FC = () => {
       // console.log(data.results);
       setTrending(data.results);
     } catch (error) {
-      console.log(error);
+      if (error) {
+        
+      }
     }
   };
   useEffect(() => {

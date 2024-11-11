@@ -22,12 +22,15 @@ const nextRef = useRef<HTMLDivElement>(null);
       const { data } = await axios.get<MoviesResponse>(
         `https://api.themoviedb.org/3/movie/${ids}/similar?language=en-US&page=1&&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
-      console.log(data.results);
+      // console.log(data.results);
       setSimilar(
         data.results
       );
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      if (error) {
+        
+      }
     }
   };
   useEffect(() => {
@@ -74,7 +77,7 @@ const nextRef = useRef<HTMLDivElement>(null);
               breakpoints={{
                 50: {
                   slidesPerView: 2,
-                  slidesPerGroup: 1,
+                  slidesPerGroup: 2,
                   spaceBetween:  5,
                   speed: 500,
                 },

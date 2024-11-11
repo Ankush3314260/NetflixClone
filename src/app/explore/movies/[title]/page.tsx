@@ -41,7 +41,7 @@ const SearchPage: React.FC = () => {
         const { data } = await axios.get<MoviesResponse>(
           `https://api.themoviedb.org/3/search/movie?query=${router.title}&include_adult=false&language=en-US&page=${countPage}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
         );
-         console.log(data);
+        //  console.log(data);
 
         setCountpage((prev) => prev + 1);
         setCollectionmovies([...collectionMovies, ...data.results]);
@@ -60,7 +60,7 @@ const SearchPage: React.FC = () => {
   useEffect(() => {
     if (typeof router.title === "string") {
       setDecodedTitle(router.title);
-      console.log(decodedTitle);
+      // console.log(decodedTitle);
       
       collectMovies();
     }

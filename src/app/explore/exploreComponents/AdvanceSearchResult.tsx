@@ -22,6 +22,7 @@ const AdvanceSearchResult :React.FC<props>= ({vote,year,genres,type}) => {
   const [totalResult, setResult] = useState<number>(0);
   const [more, setMore] = useState<boolean>(true);
   const [countPage, setCountpage] = useState<number>(1);
+  const [error,setError]=useState<boolean>(false)
   const collectMovies = async () => {
    
         try {
@@ -32,7 +33,7 @@ const AdvanceSearchResult :React.FC<props>= ({vote,year,genres,type}) => {
               setCountpage((prev) => prev + 1);
               setCollectionmovies((prev) => [...prev, ...data.results]);
               setResult(data.total_pages);
-                console.log(collectionMovies, totalResult);
+                // console.log(collectionMovies, totalResult);
               // console.log("get data",data);
               
             }
@@ -42,7 +43,9 @@ const AdvanceSearchResult :React.FC<props>= ({vote,year,genres,type}) => {
       
             }
           } catch (error) {
-            console.error("something went wrong", error);
+             if (error) {
+              setError(true)
+             }
           }
    
   
@@ -63,7 +66,7 @@ const AdvanceSearchResult :React.FC<props>= ({vote,year,genres,type}) => {
 
       <div className="min-h-svh  pt-[1em] text-[0.35em] ">
         {
-          collectionMovies.length!=0?( 
+          collectionMovies.length!=0 && !error ?( 
           <InfiniteScroll
             dataLength={collectionMovies.length} //for rendering the next data
             next={collectMovies}

@@ -21,10 +21,12 @@ const Page = () => {
         const { data } = await axios.get<SeasonDetail>(
           `https://api.themoviedb.org/3/tv/${seasonid}/season/${seasonNumber}?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
         );
-        console.log(data);
+        // console.log(data);
         setSDetail(data);
       } catch (error) {
-        console.log(error);
+        if (error) {
+          
+        }
       }
     }
   };
@@ -54,7 +56,7 @@ const Page = () => {
     <div>
       {/* {seasonNumber}df{seasonid} */}
       {sDetail ? (
-        <div className="mx-[5%] text-gray-200 relative z-[99999999] ">
+        <div className="mx-[5%] text-gray-200 relative z-[99] ">
           {/* posterdetails */}
           <div className="flex ">
             <div className="w-1/5">

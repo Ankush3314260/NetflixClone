@@ -41,13 +41,16 @@ const PageTransition = () => {
   const getVideo=async()=>{
         try {
           const {data} = await axios.get(`https://api.themoviedb.org/3/movie/912649/videos?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`)
-         console.log(data);
+        //  console.log(data);
          setKey(Math.floor(Math.random()*20))
         setData(data.results[20])
          
         
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            if (error) {
+              
+            }
             
         }
   }

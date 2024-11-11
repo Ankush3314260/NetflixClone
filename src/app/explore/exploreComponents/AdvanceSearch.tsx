@@ -18,6 +18,7 @@ interface Gprops {
 }
 const AdvanceSearch: React.FC<Gprops> = ({ url, type }) => {
   const [geners, setGeners] = useState<Genre[]>([]);
+  
   const [searchOpenClose, setSearchOpenClose] = useState<boolean>(false);
   const [selectedGenre, setSelectedGenre] = useState<string>("");
   const [selectedYear, setSelectedYear] = useState<number>(
@@ -34,10 +35,12 @@ const AdvanceSearch: React.FC<Gprops> = ({ url, type }) => {
       const { data } = await axios.get<GenresResponse>(
         `${url}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
-      console.log(data.genres);
+      // console.log(data.genres);
       setGeners(data.genres);
     } catch (error) {
-      console.log("error", error);
+      if (error) {
+     
+      }
     }
   };
   const handleChangeGenre = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -50,7 +53,7 @@ const AdvanceSearch: React.FC<Gprops> = ({ url, type }) => {
     setVote(parseInt(event.target.value));
   };
   const handleSubmit = () => {
-    console.log(selectedGenre, vote, selectedYear);
+    // console.log(selectedGenre, vote, selectedYear);
   };
   useEffect(() => {}, []);
   useEffect(() => {
@@ -189,7 +192,7 @@ const AdvanceSearch: React.FC<Gprops> = ({ url, type }) => {
       </div>
       {/* advance result page */}
       <div className="hidden result">
-        {vote && years && selectedGenre ? (
+        {vote && years && selectedGenre  ? (
           <AdvanceSearchResult
             vote={vote}
             year={selectedYear}
@@ -207,7 +210,6 @@ const AdvanceSearch: React.FC<Gprops> = ({ url, type }) => {
                 height="500"
               />
               <p>0:Result </p>
-            
             </div>
           </div>
         )}

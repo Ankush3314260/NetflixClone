@@ -34,7 +34,7 @@ interface MoviesResponse {
 }
 const TrendingNow = () => {
   const [trending, setTrending] = useState<Movie[]>([]);
-  const [error, setError] = useState<string | null>(null);
+
   const nextRef = useRef<HTMLDivElement>(null);
   const prevRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<SwiperCore | null>(null);
@@ -46,10 +46,10 @@ const TrendingNow = () => {
 
       setTrending(data.results);
     } catch (err) {
-      console.error("Error fetching trending movies:", err);
-      console.log(error);
+      if (err) {
+        
+      }
 
-      setError("Failed to load trending movies.");
     }
   };
   useEffect(() => {

@@ -22,14 +22,17 @@ const TrendingCrousal = () => {
       // console.log(data.results);
       setTrending(data.results);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      if (error) {
+        
+      }
     }
   };
   useEffect(() => {
     fetchTrending();
   }, []);
   return (
-    <div className="bg-[#050505]   text-white z-10">
+    <div className="  text-white z-10">
       {/* divider section */}
       <div className=" bg-[#101010]  drop-shadow-[0px_5px_2px_rgba(255,0,0,0.5)] rotate-180 z-10 left-0 right-0">
         <div className="custom-shape-divider-top-1729230229 ">
@@ -48,7 +51,7 @@ const TrendingCrousal = () => {
         </div>
       </div>
       {/* trending section */}
-      <div className="mx-[5%] ">
+      <div className="sm:mx-[3%] ">
         {Object.keys(trending).length !== 0 ? (
           <div className="">
             <p className="text-[0.4em] text-white mx-[5%] py-[1em]">
@@ -60,7 +63,7 @@ const TrendingCrousal = () => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-40 flex  cursor-pointer "
+                className=" text-center relative z-40 flex  cursor-pointer max-mob:hidden "
                 aria-label="Previous Slide"
               >
                 <svg
@@ -86,9 +89,9 @@ const TrendingCrousal = () => {
                 className="mySwiper  relative"
                 breakpoints={{
                     50:{
-                        slidesPerView: 1.5,
-                        slidesPerGroup: 1,
-                        spaceBetween:30,
+                        slidesPerView: 2.3,
+                        slidesPerGroup: 2,
+                        spaceBetween:10,
                         speed:500
                     },
                     400:{
@@ -155,7 +158,7 @@ const TrendingCrousal = () => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-50 flex justify-end cursor-pointer"
+                className=" text-center relative z-50 flex justify-end cursor-pointer max-mob:hidden"
                 aria-label="Next Slide"
               >
                 <svg

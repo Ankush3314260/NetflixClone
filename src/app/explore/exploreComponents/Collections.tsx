@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useEffect, useState } from "react";
-import { Movie, MoviesResponse ,ShowResult,ShowResultsResponse} from "@/app/utility/types";
+import { Movie,ShowResult} from "@/app/utility/types";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Link from "next/link";
 import axios from "axios";

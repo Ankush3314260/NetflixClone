@@ -18,7 +18,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen max-sm:min-h-svh  bg-[#050505] responsive-parent-text  ">
+    <div className="relative sm:min-h-svh  bg-[#050505] responsive-parent-text  ">
       <div className="intro-section absolute top-0 z-30  overflow-hidden ">
         <Intro />
       </div>
@@ -94,7 +94,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* trending section */}
-      <div>
+      <div className=" shadows-crousal relative">
         {/* <TrendingNow/> */}
         <TrendingCrousal />
       </div>
@@ -823,8 +823,9 @@ const Home: React.FC = () => {
         </div>
         <br />
       </div>
+      
       {/* FaQ section starts */}
-      <div className="mx-[10%]  text-white">
+      <div className="mx-[10%] pt-[0.5em] max-sm:pt-[1em] text-white">
         {/* <p className=" font-500 text-[0.45em] ">
           {" "}
           <b> Frequently Asked Questions</b>{" "}

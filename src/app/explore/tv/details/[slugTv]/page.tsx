@@ -12,7 +12,6 @@ import {
   Show,
   TvGenre,
   Season,
-  errorTypes,
   MovieVideos,
   VideoResult,
 } from "@/app/utility/types";
@@ -26,7 +25,7 @@ const Page = () => {
   const [details, setDetails] = useState<Show | null>(null); // Adjust type for a single Detailsmovie
   const [video, setVideo] = useState<VideoResult[] | null>([]);
   const [id, setId] = useState<string | null>(null);
-  const [error, setError] = useState<errorTypes | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     if (router.slugTv) {
@@ -44,7 +43,7 @@ const Page = () => {
         `https://api.themoviedb.org/3/tv/${id}/videos?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
       let count = 0;
-      console.log(data);
+      // console.log(data);
 
       setVideo(
         data.results.filter((items: VideoResult) => {
@@ -58,7 +57,9 @@ const Page = () => {
         })
       ); // Store fetched details
     } catch (error) {
-      console.log("Error", error);
+      if (error) {
+        
+      }
     }
   };
   const getFetch = async () => {
@@ -69,16 +70,14 @@ const Page = () => {
         `https://api.themoviedb.org/3/tv/${id}?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
       getVideo();
-      console.log(data);
+      // console.log(data);
 
       setDetails(data); // Store fetched details
-      console.log(video);
+      // console.log(video);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.status) {
-          setError({ statuscode: error.status, status: true });
+        if (error) {
+          setError(true)
         }
-      }
     }
   };
 
@@ -129,9 +128,7 @@ const Page = () => {
     );
   };
 
-  if (error?.status) {
-    return <ErrorPage error={error} />;
-  }
+  
   return (
     <div className="min-h-svh relative overflow-x-hidden">
       {details ? (
@@ -140,7 +137,7 @@ const Page = () => {
             <div className="relative">
               <div className=" relative w-full  top-0 left-0 bottom-0 right-0 ">
                 <div
-                  className={`fixed z-0 shadow-fade-inside top-0 max-sm:top-[10%] left-0 right-0  `}
+                  className={`fixed z-0 shadow-fade-inside top-0 max-sm:top-[0%] left-0 right-0  `}
                 >
                   <Image
                     className="w-full object-cover object-center"
@@ -405,7 +402,7 @@ const Page = () => {
         </div>
       ) : (
         <div className="min-h-svh flex justify-center items-center">
-          <Loader />
+         {error?<ErrorPage/>:<Loader/>}
         </div>
       )}
     </div>

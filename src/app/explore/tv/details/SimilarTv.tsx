@@ -5,7 +5,6 @@ import axios from "axios";
 import Image from "next/image";
 import "swiper/css/navigation";
 import "swiper/css";
-import Loader from "@/app/Loader";
 import "../../exploreComponents/exploreComponents.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -15,7 +14,6 @@ interface Props {
 }
 const SimilarTv: React.FC<Props> = ({ ids }) => {
   const [similar, setSimilar] = useState<Movie[]>([]);
-  const [errors,setErrors]=useState<boolean>(false)
 const nextRef = useRef<HTMLDivElement>(null);
   const prevRef = useRef<HTMLDivElement>(null);
   const getSimilarTv = async () => {
@@ -24,13 +22,16 @@ const nextRef = useRef<HTMLDivElement>(null);
         `https://api.themoviedb.org/3/tv/${ids}/similar?language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
         
       );
-      console.log(data.results);
+      // console.log(data.results);
       setSimilar(
         data.results
       );
     } catch (error) {
-      console.log(error);
-      setErrors(true)
+      // console.log(error);
+      if (error) {
+        
+      }
+   
     }
   };
   useEffect(() => {

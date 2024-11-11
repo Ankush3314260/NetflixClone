@@ -55,13 +55,16 @@ const EpisodesAccordion: React.FC<Props> = ({ ep }) => {
         
                 <div className="flex items-center gap-[10%] border-b-[1px] p-2 border-[#E70713]">
                 <div className="w-[30%] text-[0.3em] epsisodeshadow relative">
-                  <Image
+                  {
+                    ep.still_path? <Image
                     width="2000"
                     height="500"
                     alt="poster"
                     src={`https://image.tmdb.org/t/p/w500/${ep.still_path}`}
                     className="border-[1px] hover:border-[#E70713] transition-all duration-300 border-[#050505] "
-                  />
+                  />:"Image not found"
+                  }
+                 
                
                 </div>
                 <div className="  w-[60%]  ">

@@ -22,7 +22,7 @@ const nextRef = useRef<HTMLDivElement>(null);
       const { data } = await axios.get<MovieCredits>(
         `https://api.themoviedb.org/3/movie/${ids}/credits?language=en-US&&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
-      console.log(data.cast);
+      // console.log(data.cast);
       setCast(
         data.cast.filter((item) => {
           if (item.known_for_department === "Acting" && item.profile_path) {
@@ -33,7 +33,10 @@ const nextRef = useRef<HTMLDivElement>(null);
       
     } catch (error) {
       setFlag(false)
-      console.log(error);
+      if (error) {
+        
+      }
+      // console.log(error);
     }
   };
   useEffect(() => {

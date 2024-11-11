@@ -205,3 +205,52 @@
     rgba(0, 0, 0, 0.1) 150%
   );
 }
+
+/* upcoming animation css */
+.slides-left{
+  animation: slidessLeft 20s linear infinite;
+}
+@keyframes slidessLeft{
+  to{
+    transform: translateX(-320.6%);
+  }
+}
+.slides-right{
+  animation: slidessRight 20s linear infinite;
+}
+@keyframes slidessRight{
+  from{
+    transform: translateX(-320.6%);
+  }
+  to{
+    transform: translateX(0);
+  }
+}
+.shadowsforthefade::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background-image: linear-gradient(
+    to left,
+    rgba(5, 5, 5, 1) 2%,
+    rgba(0, 0, 0, 0.001) 30%
+  );
+}
+.shadowsforthefade::before{
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background-image: linear-gradient(
+    to right,
+    rgba(5, 5, 5, 1) 2%,
+    rgba(0, 0, 0, 0.001) 30%
+  );
+}

@@ -16,6 +16,7 @@ const Page = () => {
   if (router) {
   }
   useEffect(() => {
+
     const t1 = gsap.timeline();
     t1.to("body", {
       overflow: "hidden",
@@ -43,21 +44,21 @@ const Page = () => {
   return (
     <div className="   text-white min-h-svh  ">
     <div className="absolute myimageshadow opacity-0 top-0 left-0 bottom-0 right-0 z-[99999999] bg-black">
-        <div className=" h-svh flex items-center ">
-          <div className=" w-full absolute z-0 top-0 max-sm:top-[15%]  bottom-0 min-h-screen left-0 right-0 ">
-            <video
-              autoPlay
-              muted
-              playsInline
-              width="100%"
-              height="100vh"
-              style={{ objectFit: "cover" }}
-            >
-              <source src="/images/videoplayback.mp4" type="video/mp4" />
-            </video>
-          </div>
+      <div className=" h-svh flex items-center ">
+        <div className=" w-full absolute z-0 top-0 max-sm:top-[5%]  bottom-0 min-h-screen left-0 right-0 ">
+          <video
+            autoPlay
+            muted
+            playsInline
+            width="100%"
+            height="100vh"
+            style={{ objectFit: "cover" }}
+          >
+            <source src="/images/videoplayback.mp4" type="video/mp4" />
+          </video>
         </div>
-      </div>  
+      </div>
+      </div>
       <div className="min-h-screen max-sm:min-h-svh relative z-20 opacity-0 explore-content ">
         {/* first page */}
         <div className=" ">

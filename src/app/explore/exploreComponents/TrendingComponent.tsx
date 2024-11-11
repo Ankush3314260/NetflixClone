@@ -28,7 +28,9 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
       // console.log(data.results);
       setTrending(data.results);
     } catch (error) {
-      console.log(error);
+      if (error) {
+        
+      }
     }
   };
 
