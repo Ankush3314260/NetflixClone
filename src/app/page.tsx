@@ -97,7 +97,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* trending section */}
-      <div className=" shadows-crousal relative home-after-animation opacity-0" >
+      <div className=" shadows-crousal relative home-after-animation opacity-[0]" >
         {/* <TrendingNow/> */}
         <TrendingCrousal />
       </div>
