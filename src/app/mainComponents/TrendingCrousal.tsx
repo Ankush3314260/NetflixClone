@@ -86,7 +86,7 @@ const TrendingCrousal = () => {
                 spaceBetween={50}
                 modules={[Navigation]}
                 slidesPerView={4.6}
-                cssMode={true}
+                cssMode={window.innerWidth<640?true:false}
                 className="mySwiper  relative"
                 breakpoints={{
                     50:{

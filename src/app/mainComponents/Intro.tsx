@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
-// import Loader from "./Loader";
 import axios from "axios";
 import "./mainComponents.css";
 
@@ -29,8 +28,28 @@ interface MovieResponse {
   total_pages: number;
   total_results: number;
 }
+
 const Intro: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
+
+  const preloadImages = (imageUrls: string[]) => {
+    if (typeof window === "undefined") {
+      return Promise.resolve(); // Do nothing on server-side rendering
+    }
+    return Promise.all(
+      imageUrls.map(
+        (src) =>
+          new Promise((resolve, reject) => {
+            const img = new window.Image();
+            img.src = src;
+            img.onload = resolve;
+            img.onerror = reject;
+          })
+      )
+    );
+  };
+
   const introAnimation = () => {
     gsap.matchMedia().add("(max-width: 640px)", () => {
       window.scrollTo(0,0)
@@ -156,6 +175,7 @@ const Intro: React.FC = () => {
       };
     });
   };
+
   const fetchImages = async () => {
     try {
       const { data } = await axios.get<MovieResponse>(
@@ -163,53 +183,53 @@ const Intro: React.FC = () => {
       );
       return data.results;
     } catch (error) {
-      // console.log("unable to get the data", error);
-      if (error) {
-        
-      }
+      console.error("Unable to fetch movies:", error);
+      return [];
     }
-
-    // Return only the results
   };
-  async function fixtiming() {
-    const data = await fetchImages();
-    if (data) {
-      setMovies(data);
-    }
-    setTimeout(() => {
-      gsap.set(".loader-images", {
-        y: "120%",
-        opacity: 0,
-      });
-      introAnimation();
-    }, 1);
-  }
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-    fixtiming();
+    const loadImagesAndAnimate = async () => {
+      const data = await fetchImages();
+      setMovies(data);
+
+      if (data.length > 0) {
+        const imageUrls = data.map(
+          (movie) => `https://image.tmdb.org/t/p/w780${movie.poster_path}`
+        );
+        // console.log("Preloading images...");
+        await preloadImages(imageUrls); // Wait for all images to load
+        // console.log("All images preloaded.");
+        setAllImagesLoaded(true); // Update state
+        introAnimation(); // Start animation after images are loaded
+      }
+    };
+
+    loadImagesAndAnimate();
   }, []);
 
   return (
     <div className="relative bg-[#101010] min-h-screen max-sm:min-h-svh z-50 text-white flex items-center ">
-      <div className="image-container flex sm:gap-[2%] justify-evenly max-sm:gap-[10px] relative z-50  items-center ">
-        {movies.length === 0 ? (
-          <div className="m-auto ">{/* <Loader /> */}</div>
-        ) : (
-          movies.map((movie: Movie) => (
-            <div
-              key={movie.id}
-              className="relative sm:min-w-[20%] max-sm:min-w-[150px] loader-images"
-            >
-              <Image
-                width="300"
-                height="500"
-                className="object-cover"
-                src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}
-                alt={movie.title}
-              />
-            </div>
-          ))
-        )}
+      <div
+        className={`image-container flex sm:gap-[2%] justify-evenly max-sm:gap-[10px] relative z-50 items-center ${
+          allImagesLoaded ? "visible" : "invisible"
+        }`}
+      >
+        {movies.map((movie) => (
+          <div
+            key={movie.id}
+            className="relative sm:min-w-[20%] max-sm:min-w-[150px] loader-images"
+            style={{ opacity: 0, transform: "translateY(120%)" }} // Ensure initial state matches GSAP targets
+          >
+            <Image
+              width="300"
+              height="500"
+              className="object-cover"
+              src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}
+              alt={movie.title}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
