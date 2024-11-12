@@ -103,7 +103,7 @@ const Home: React.FC = () => {
       </div>
       <br />
       {/* more reason to join the netflix container */}
-      <div className="mx-[10%] text-white bg-[#050505] ">
+      <div className="mx-[10%] text-white bg-[#050505] home-after-animation opacity-[0]">
         <h2 className="text-[0.45em]  max-sm:text-[0.75em]   py-[10px] ">
           More reasons to join
         </h2>

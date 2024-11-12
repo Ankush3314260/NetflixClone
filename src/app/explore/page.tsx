@@ -2,8 +2,8 @@
 import React from "react";
 import { ReactTyped } from "react-typed";
 // import Link from "next/link";
-import { useEffect } from "react";
-import { useRouter } from "next/compat/router";
+import { useEffect,useState } from "react";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 // import PageTransition from "./exploreComponents/pageTransition";
 import TrendingNow from "./exploreComponents/TrendingNow";
@@ -12,9 +12,20 @@ import TrendingCast from "./exploreComponents/TrendingCast";
 import LastScreen from "./exploreComponents/LastScreen";
 const Page = () => {
   const router = useRouter();
-
-  if (router) {
+  const [search,setSearch]=useState<string>('')
+  const handleNavigate=()=>{
+    const getUrl =search?`/explore/${search}`:``
+    if (router) {
+      router.push(getUrl)
+    }
+    
   }
+   const handleSearch =(event:React.KeyboardEvent<HTMLInputElement>)=>{
+           if (event.key=='Enter') {
+            handleNavigate()
+           }
+   }
+  
   useEffect(() => {
 
     const t1 = gsap.timeline();
@@ -85,9 +96,12 @@ const Page = () => {
               <input
                 className="text-[0.35em] caret-[#E70713] max-sm:text-[0.45em] bg-[#000000a6] px-[1em] translate-x-[3.5%] flex items-center py-[0.5em] rounded-full outline-none text-[#E70713]  w-full   "
                 type="text"
+                required
+                onKeyDown={handleSearch}
+                onChange={(e)=>setSearch(e.target.value)}
               />
             </ReactTyped>
-            <span className="w-[3%] max-mob:w-[5%] -translate-x-[65%] bg-black rounded-e-full cursor-pointer">
+            <span className="w-[3%] max-mob:w-[5%] -translate-x-[65%] bg-black rounded-e-full cursor-pointer" onClick={handleNavigate}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 -960 960 960"

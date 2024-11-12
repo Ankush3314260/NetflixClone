@@ -5,7 +5,6 @@ import axios from "axios";
 import Image from "next/image";
 import "swiper/css/navigation";
 import "swiper/css";
-import Loader from "@/app/Loader";
 import "../../exploreComponents/exploreComponents.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -181,7 +180,7 @@ const nextRef = useRef<HTMLDivElement>(null);
            </div>
             ) : (
               <div className="flex justify-center items-center ">
-               {cast.length != 0?"":<Loader/>}
+               {cast.length != 0?"":""}
               </div>
             )}
           </div>):('')

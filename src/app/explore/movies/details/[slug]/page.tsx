@@ -215,7 +215,7 @@ const MoviePage = () => {
                         </p>
                       </div>
                     ) : (
-                      <div>{video != null ? "" : <Loader />}</div>
+                      <div>{""}</div>
                     )}
                   </div>
   
@@ -334,7 +334,7 @@ const MoviePage = () => {
           </div>
         ) : (
           <div className="min-h-svh flex justify-center items-center">
-           {error?<ErrorPage />:<Loader />} 
+           {error?<ErrorPage />:<Loader/>} 
           </div>
         )}
       </div>
