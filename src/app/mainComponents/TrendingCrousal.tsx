@@ -63,7 +63,7 @@ const TrendingCrousal = () => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-40 flex  cursor-pointer max-mob:hidden "
+                className=" text-center relative z-[99999] flex  cursor-pointer max-mob:hidden "
                 aria-label="Previous Slide"
               >
                 <svg
@@ -86,7 +86,7 @@ const TrendingCrousal = () => {
                 spaceBetween={50}
                 modules={[Navigation]}
                 slidesPerView={4.6}
-                cssMode={window.innerWidth<640?true:false}
+                cssMode={window?.innerWidth<640?true:false}
                 className="mySwiper  relative"
                 breakpoints={{
                     50:{
@@ -159,7 +159,7 @@ const TrendingCrousal = () => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-50 flex justify-end cursor-pointer max-mob:hidden"
+                className=" text-center relative z-[99999] flex justify-end cursor-pointer max-mob:hidden"
                 aria-label="Next Slide"
               >
                 <svg
