@@ -138,7 +138,7 @@ export default function RootLayout({
         </div>
       </div>
       <div className="relative">
-        <nav className="py-8 text-[0.3em] relative blur-nav z-[999999]">
+        <nav className="py-3 text-[0.3em] relative blur-nav z-[999999]">
           <div className="flex justify-between ">
             <div className="w-2/5 flex justify-center">
               <Link href="/explore" className="w-full  flex justify-center" onClick={()=>{
@@ -151,7 +151,7 @@ export default function RootLayout({
                   className="w-[30%] min-w-[50px] relative z-[9999999999] "
                   width="200"
                   height="100"
-                  src="/images/Logonetflix.png"
+                  src="/images/1731472286386.png"
                   alt="logonetflix"
                 />
               </Link>
@@ -255,7 +255,7 @@ export default function RootLayout({
                 <li>Account</li>
                 <li>Ways to Watch</li>
                 <li>Corporate Information</li>
-                <li>Only on Netflix</li>
+                <li>Only on Btheone Movie</li>
               </ul>
               <ul>
                 <li>Media Centre</li>
@@ -265,7 +265,7 @@ export default function RootLayout({
             </div>
             <div className="flex justify-center space-x-5 max-mob:space-x-1 items-center py-10 w-[60%] max-sm:w-[80%] max-mob:w-full m-auto text-[#AFAFAF]">
               <p className="font-netflix tracking-wide">
-                NETFLIX INDIA{" "}
+                BTHEONE MOVIE{" "}
                 <span className="font-sans ml-5 max-mob:ml-1"> x </span>
               </p>
 

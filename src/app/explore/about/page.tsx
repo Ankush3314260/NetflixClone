@@ -8,14 +8,6 @@ const Page = () => {
     const t1 = gsap.timeline();
     t1.to("body",{
       overflow:"hidden"
-    }).to(".myimageshadow", {
-      display: "block",
-      opacity:1,
-      duration: 4,
-    }).to(".myimageshadow", {
-      display: "none",
-      opacity:0,
-      duration: 1,
     })
     .to(".headinngs", {
       opacity: 1,
@@ -23,10 +15,6 @@ const Page = () => {
       duration: 1,
       ease: "linear",
     })
-      
-      .to(".myimageshadow", {
-        display: "none",
-      })
       .to("body",{
         overflow:"auto"
       })
@@ -44,22 +32,7 @@ const Page = () => {
   }, []);
   return (
     <div className="min-h-svh   flex flex-col   ">
-      <div className="absolute myimageshadow opacity-0 top-0 left-0 bottom-0 right-0 z-[99999999] bg-black">
-      <div className=" h-svh flex items-center ">
-        <div className=" w-full absolute z-0 top-0 max-sm:top-[15%]  bottom-0 min-h-screen left-0 right-0 ">
-          <video
-            autoPlay
-            muted
-            playsInline
-            width="100%"
-            height="100vh"
-            style={{ objectFit: "cover" }}
-          >
-            <source src="/images/videoplayback.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-      </div>
+     
       <h1 className=" text-center relative z-[6]">
         {" "}
         <div className="font-netflix">
@@ -93,23 +66,10 @@ const Page = () => {
         </h3>
         <div className="ml-[5%]  text-[0.35em] max-sm:text-[0.45em] pt-[1em]">
           <p>
-            Disclaimer: This project is a personal, non-commercial replica of
-            the Netflix interface, developed purely for educational and
-            demonstration purposes. It is designed to showcase front-end
-            development skills, including API integration with the TMDB (The
-            Movie Database) API for real-time movie and show data, and GSAP
-            (GreenSock Animation Platform) for smooth, engaging animations.
+          Disclaimer: This project is a personal, non-commercial replica of a popular streaming platform&apos;s interface, developed purely for educational and demonstration purposes. It is designed to showcase front-end development skills, including API integration with the TMDB (The Movie Database) API for real-time movie and show data, and GSAP (GreenSock Animation Platform) for smooth, engaging animations.
           </p>
           <p className="pt-[1em]">
-            This project is not affiliated with, endorsed, sponsored, or
-            approved by Netflix, Inc. or TMDB. The Netflix name, logo, and
-            related assets are trademarks of Netflix, Inc. and are used solely
-            as a reference to illustrate the intended functionality and design
-            inspiration. All rights to Netflix&apos;s trademarks, branding, and
-            content belong to Netflix, Inc. Any resemblance to Netflix&apos;s
-            proprietary design, content, or structure is purely incidental and
-            serves only to simulate an authentic streaming app experience for
-            learning purposes.
+          This project is not affiliated with, endorsed, sponsored, or approved by any streaming service or TMDB. All trademarks, branding, and content rights belong to their respective owners. Any resemblance to proprietary designs, content, or structure is purely incidental and serves only to simulate an authentic streaming app experience for learning purposes.
           </p>
         </div>
       </div>

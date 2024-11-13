@@ -2,7 +2,7 @@
 import React from "react";
 import { ReactTyped } from "react-typed";
 // import Link from "next/link";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 // import PageTransition from "./exploreComponents/pageTransition";
@@ -12,64 +12,38 @@ import TrendingCast from "./exploreComponents/TrendingCast";
 import LastScreen from "./exploreComponents/LastScreen";
 const Page = () => {
   const router = useRouter();
-  const [search,setSearch]=useState<string>('')
-  const handleNavigate=()=>{
-    const getUrl =search?`/explore/${search}`:``
+  const [search, setSearch] = useState<string>("");
+  const handleNavigate = () => {
+    const getUrl = search ? `/explore/${search}` : ``;
     if (router) {
-      router.push(getUrl)
+      router.push(getUrl);
     }
-    
-  }
-   const handleSearch =(event:React.KeyboardEvent<HTMLInputElement>)=>{
-           if (event.key=='Enter') {
-            handleNavigate()
-           }
-   }
-  
-  useEffect(() => {
+  };
+  const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key == "Enter") {
+      handleNavigate();
+    }
+  };
 
+  useEffect(() => {
     const t1 = gsap.timeline();
-    t1.to("body", {
-      overflow: "hidden",
-    },"-=1")
-      .to(".myimageshadow", {
-        display: "block",
+    t1.to(
+      "body",
+      {
+        overflow: "hidden",
+      },
+      "-=1"
+    )
+      .to(".explore-content", {
         opacity: 1,
-      }).to(".explore-content",{
-        opacity:1
-      })
-      .to(".myimageshadow", {
-        display: "none",
-        clipPath:"polygon(0% 0%, 100% 0%,100% 0%,0% 0%);",
-        opacity: 0,
-        delay:3,
-        duration: 1,
-      })
-      .to(".myimageshadow", {
-        display: "none",
+        duration:1
       })
       .to("body", {
         overflow: "auto",
-      })
+      });
   }, []);
   return (
     <div className="   text-white min-h-svh  ">
-    <div className="absolute myimageshadow opacity-0 top-0 left-0 bottom-0 right-0 z-[99999999] bg-black">
-      <div className=" h-svh flex items-center ">
-        <div className=" w-full absolute z-0 top-0 max-sm:top-[5%]  bottom-0 min-h-screen left-0 right-0 ">
-          <video
-            autoPlay
-            muted
-            playsInline
-            width="100%"
-            height="100vh"
-            style={{ objectFit: "cover" }}
-          >
-            <source src="/images/videoplayback.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-      </div>
       <div className="min-h-screen max-sm:min-h-svh relative z-20 opacity-0 explore-content ">
         {/* first page */}
         <div className=" ">
@@ -98,10 +72,13 @@ const Page = () => {
                 type="text"
                 required
                 onKeyDown={handleSearch}
-                onChange={(e)=>setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </ReactTyped>
-            <span className="w-[3%] max-mob:w-[5%] -translate-x-[65%] bg-black rounded-e-full cursor-pointer" onClick={handleNavigate}>
+            <span
+              className="w-[3%] max-mob:w-[5%] -translate-x-[65%] bg-black rounded-e-full cursor-pointer"
+              onClick={handleNavigate}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 -960 960 960"

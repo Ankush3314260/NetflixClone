@@ -132,7 +132,7 @@ const SearchPage: React.FC = () => {
           <div className="max-[5%] w-3/5 text-center">
             <Image
               className="m-auto"
-              src="/images/Logonetflix.png"
+              src="/images/1731472286386.png"
               alt="netflix logo"
               width="500"
               height="500"

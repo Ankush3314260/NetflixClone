@@ -60,10 +60,7 @@ const TrendingCrousal = () => {
             <div className="crousal  flex justify-evenly items-center  ">
               <div
                 ref={prevRef}
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-                className=" text-center relative z-[99999] flex  cursor-pointer max-mob:hidden "
+                className=" text-center relative z-50 flex  cursor-pointer max-mob:hidden "
                 aria-label="Previous Slide"
               >
                 <svg
@@ -156,10 +153,8 @@ const TrendingCrousal = () => {
               {/* Next Button */}
               <div
                 ref={nextRef}
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-                className=" text-center relative z-[99999] flex justify-end cursor-pointer max-mob:hidden"
+               
+                className=" text-center relative z-50 flex justify-end cursor-pointer max-mob:hidden"
                 aria-label="Next Slide"
               >
                 <svg

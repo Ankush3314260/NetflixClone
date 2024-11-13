@@ -111,13 +111,13 @@ const AdvanceSearchResult :React.FC<props>= ({vote,year,genres,type}) => {
           <div className="max-[5%] w-3/5 text-center">
             <Image
               className="m-auto"
-              src="/images/Logonetflix.png"
+              src="/images/1731472286386.png"
               alt="netflix logo"
               width="500"
               height="500"
             />
             <p>0:Result </p>
-            <p className="text-[0.3em] opacity-50">
+            <p className="text-[0.3em] ">
               Make sure your title matches the movie title
             </p>
 

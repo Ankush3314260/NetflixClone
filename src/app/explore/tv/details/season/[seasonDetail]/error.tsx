@@ -5,7 +5,7 @@ const Error = () => {
     return (
         <div className='min-h-svh '>
             <div className='m-auto text-center relative  '>
-            <Image className='m-auto block' src="/images/Logonetflix.png" alt="logo" width="250" height="150"/>
+            <Image className='m-auto block' src="/images/1731472286386.png" alt="logo" width="250" height="150"/>
             <p className='text-[0.25em] max-sm:text-[0.65em]'>Smething Went Wrong Please try again later</p>
             </div>            
       <div className='m-auto pt-[0.5em]'>

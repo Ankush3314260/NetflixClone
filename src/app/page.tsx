@@ -25,17 +25,17 @@ const Home: React.FC = () => {
       <div className="relative sm:min-h-svh  bg-[url('/images/IN-en-20241014-TRIFECTA-perspective_e7121311-c11e-4809-a3e6-22abffa33569_small.jpg')] bg-cover home-after-animation opacity-0">
         <div className="absolute z-0 bg-[#000000c2] top-0 left-0 bottom-0 right-0"></div>
         <div className="navbar-section  relative z-10 py-[25px]   w-[83%] m-auto">
-          <nav className=" flex justify-between items-center flex-wrap">
-            <div className="sm:w-[13.8%] max-sm:w-[30%] max-sm:min-w-[50px]  ">
+          <nav className=" flex justify-between items-center flex-wrap ">
+            <div className="sm:w-[15%] max-sm:w-[30%] max-sm:min-w-[50px]  ">
               <Image
-                width="300"
-                height="300"
+                width="500"
+                height="500"
                 className="relative left-[1%]"
-                src="/images/Logonetflix.png"
+                src="/images/1731472286386.png"
                 alt="netflixLogo"
               />
             </div>
-            <div className="flex items-center  space-x-3 sm:w-2/5 max-sm:w-[70%] min-w-[100px]    justify-end">
+            <div className="flex items-center relative -top-[10px] max-sm:-top-[3px] space-x-3 sm:w-2/5 max-sm:w-[70%] min-w-[100px]    justify-end">
               <button className="flex text-[0.20em] max-sm:text-[0.3em] items-center space-x-1 sm:w-[30%] max-sm:w-[30%] border-[1px] border-white justify-center min-w-[40px]  bg-[#000000a8] text-white py-[5px] px-1">
                 {" "}
                 <span className="block">
@@ -835,36 +835,36 @@ const Home: React.FC = () => {
         </p> */}
         <div className="text-[0.45em] space-y-[10px]">
           <Accordioncustom
-            title="What is Netflix?"
-            answer="Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more – on thousands of internet-connected devices.
+            title="What is Btheone Movie?"
+            answer="Btheone Movie a demostration project that show case a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more – on thousands of internet-connected devices.
 You can watch as much as you want, whenever you want, without a single ad – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!"
           />
           <Accordioncustom
-            title="How much does Netflix cost?"
-            answer="Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from ₹149 to ₹649 a month. No extra costs, no contracts."
+            title="How much does Btheone Movie cost?"
+            answer="Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee."
           />
           <Accordioncustom
             title="Where can I watch?"
             answer="
-Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device that offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.
+Watch anywhere, anytime. Sign in with your Google Account account to watch instantly on the web at BetheoneMovie from your personal computer or on any internet-connected device that offers the web app, including smart TVs, smartphones, tablets, streaming media players and game consoles.
 
-You can also download your favourite shows with the iOS or Android app. Use downloads to watch while you're on the go and without an internet connection. Take Netflix with you anywhere."
+You can also download your favourite shows with the iOS or Android app. Use downloads to watch while you're on the go and without an internet connection. Take Movie with you anywhere."
           />
           <Accordioncustom
             title="How do I cancel?"
             answer="
-Netflix is flexible. There are no annoying contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime."
+It is flexible. There are no annoying contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime."
           />
           <Accordioncustom
-            title="What can I watch on Netflix?"
+            title="What can I watch on Btheone Movie"
             answer="
 
-Netflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Netflix originals, and more. Watch as much as you want, anytime you want."
+It has an extensive library of feature films, documentaries, TV shows, anime, award-winning Netflix originals, and more. Watch as much as you want, anytime you want."
           />
           <Accordioncustom
-            title="Is Netflix good for kids?"
+            title="Is Btheone Movie good for kids?"
             answer="
-The Netflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and films in their own space.
+The Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and films in their own space.
 
 Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see."
           />
@@ -876,7 +876,7 @@ Kids profiles come with PIN-protected parental controls that let you restrict th
         <p className="text-[0.3em] text-center py-5">
           Ready to watch? Just Click on the button below to explore
         </p>
-        
+        <Link href="/explore" onClick={handleNavigate}>
         <button className="text-[0.5em] flex justify-center w-[30%] min-w-[100px] items-center relative z-10 text-white hover:bg-[#C11119] transition-all duration-200 bg-[#E50914] px-[1em] py-2 m-auto  rounded-md group ">
           <p className="w-[90%] "> Get Started</p>
           <p className="w-1/5">
@@ -890,7 +890,7 @@ Kids profiles come with PIN-protected parental controls that let you restrict th
             </svg>
           </p>
         </button>
-
+        </Link>
         <div className="py-5">
           <p className="text-[#AFAFAF] text-[0.3em] py-5">
             Questions? Call XXX-XXX-XXX-XX24
@@ -922,7 +922,7 @@ Kids profiles come with PIN-protected parental controls that let you restrict th
           </div>
           <div className="flex justify-center space-x-5 max-mob:space-x-1 items-center py-10 w-[60%] max-sm:w-[80%] max-mob:w-full m-auto text-[#AFAFAF]">
             <p className="font-netflix">
-              NETFLIX INDIA{" "}
+              BTHEONE MOVIE {" "}
               <span className="font-sans ml-5 max-mob:ml-1"> x </span>
             </p>
 
