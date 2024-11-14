@@ -155,7 +155,7 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-30 flex justify-end cursor-pointer max-mob:hidden"
+                className=" text-center relative z-40 flex justify-end cursor-pointer max-mob:hidden"
                 aria-label="Next Slide"
               >
                 <svg

@@ -219,7 +219,7 @@ export default function RootLayout({
                 </ul>
 
                 <div className="relative top-[10%] max-mob:top-[25%]  text-[2em] max-mob:text-[2.5em] text-gray-200 text-center">
-                  <h1 className="font-netflix text-[1em]">Netflix India</h1>
+                  <h1 className="font-netflix text-[1em]">BTHONE MOVIE </h1>
                   <h3 className="font-custom-bold animate-pulse">X</h3>
                   <h1 className="font-mySignature text-[1.2em] relative right-[1%]">
                     Ankush Kumar

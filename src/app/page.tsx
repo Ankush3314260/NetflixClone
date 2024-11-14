@@ -9,7 +9,7 @@ import Intro from "./mainComponents/Intro";
 const Home: React.FC = () => {
 
   const handleNavigate = () => {
-    console.log("handl");
+    // console.log("handl");
 
     window.history.replaceState(null," ","/explore")
   };
