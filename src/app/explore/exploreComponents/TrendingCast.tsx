@@ -33,7 +33,7 @@ const TrendingCast: React.FC = () => {
     fetchTrending();
   }, []);
   return (
-    <div className="bg-[#050505] pt-[0.5em]   text-white z-10">
+    <div className="bg-[#050505] pt-[0.5em]   text-white relative">
       {/* divider section */}
 
       {/* trending section */}

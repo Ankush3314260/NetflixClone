@@ -71,7 +71,7 @@ const TrendingNow = () => {
   }, [trending]);
   const shouldLoop = trending.length >= 6;
   return (
-    <div className=" relative z-10 text-white bg-[#050505]">
+    <div className=" relative z-10 text-white bg-[#050505] ">
       {/* page divider  */}
 
       {/* trending section start */}

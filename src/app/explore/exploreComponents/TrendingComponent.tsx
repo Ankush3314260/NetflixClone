@@ -37,10 +37,10 @@ const TrendingComponent: React.FC<Props> = ({ title, url, type }) => {
     fetchMoviesTrending();
   }, []);
   return (
-    <div className=" pt-[0.5em]   text-white z-10">
-      {/* divider section */}
+    <div className=" pt-[0.5em]    text-white ">
+      
 
-      {/* trending section */}
+      
       <div className="mx-[5%] ">
         {Object.keys(trending).length !== 0 ? (
           <div className="">
@@ -73,20 +73,7 @@ const TrendingComponent: React.FC<Props> = ({ title, url, type }) => {
                 //   nextEl: nextRef.current,
                 //   prevEl: prevRef.current,
                 // }}
-                onInit={(swiper) => {
-                  // Attach refs after Swiper initializes
-                  const navigation = swiper.params
-                    .navigation as typeof swiper.params.navigation & {
-                    nextEl?: HTMLElement;
-                    prevEl?: HTMLElement;
-                  };
-                  if (nextRef.current && prevRef.current) {
-                    navigation.nextEl = nextRef.current;
-                    navigation.prevEl = prevRef.current;
-                    swiper.navigation.init();
-                    swiper.navigation.update();
-                  }
-                }}
+              
                 spaceBetween={50}
                 modules={[Navigation]}
                 slidesPerView={4.6}
@@ -121,7 +108,7 @@ const TrendingComponent: React.FC<Props> = ({ title, url, type }) => {
                     slidesPerView: 4.6,
                     slidesPerGroup: 4,
                     spaceBetween: 35,
-                    speed: 600,
+                    speed: 500,
                   },
                 }}
                 onBeforeInit={(swiper) => {
