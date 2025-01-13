@@ -11,12 +11,12 @@ import Link from "next/link";
 import { Navigation } from "swiper/modules";
 import axios from "axios";
 
-interface Props{
-    title:string,
-    url:string
-    type:string
+interface Props {
+  title: string;
+  url: string;
+  type: string;
 }
-const TrendingComponent :React.FC<Props>=({title,url,type}) => {
+const TrendingComponent: React.FC<Props> = ({ title, url, type }) => {
   const [trending, setTrending] = useState<(Movie | ShowResult)[]>([]);
   const nextRef = useRef<HTMLDivElement>(null);
   const prevRef = useRef<HTMLDivElement>(null);
@@ -29,28 +29,23 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
       setTrending(data.results);
     } catch (error) {
       if (error) {
-        
       }
     }
   };
 
   useEffect(() => {
-   
-      fetchMoviesTrending();  
-    
-   
-   
+    fetchMoviesTrending();
   }, []);
   return (
     <div className=" pt-[0.5em]   text-white z-10">
       {/* divider section */}
-    
+
       {/* trending section */}
       <div className="mx-[5%] ">
         {Object.keys(trending).length !== 0 ? (
           <div className="">
             <p className="text-[0.4em] max-sm:text-[0.55em] text-white mx-[5%] py-[1em] font-custom-bold ">
-               {title}
+              {title}
             </p>
             <div className="crousal  flex justify-evenly items-center  ">
               <div
@@ -74,9 +69,23 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
               </div>
 
               <Swiper
-                navigation={{
-                  nextEl: nextRef.current,
-                  prevEl: prevRef.current,
+                // navigation={{
+                //   nextEl: nextRef.current,
+                //   prevEl: prevRef.current,
+                // }}
+                onInit={(swiper) => {
+                  // Attach refs after Swiper initializes
+                  const navigation = swiper.params
+                    .navigation as typeof swiper.params.navigation & {
+                    nextEl?: HTMLElement;
+                    prevEl?: HTMLElement;
+                  };
+                  if (nextRef.current && prevRef.current) {
+                    navigation.nextEl = nextRef.current;
+                    navigation.prevEl = prevRef.current;
+                    swiper.navigation.init();
+                    swiper.navigation.update();
+                  }
                 }}
                 spaceBetween={50}
                 modules={[Navigation]}
@@ -84,39 +93,37 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                 cssMode={true}
                 className="mySwiper  relative fade-crousal"
                 breakpoints={{
-                    50:{
-                        slidesPerView: 2.5,
-                        slidesPerGroup: 2,
-                        spaceBetween:10,
-                        speed:200
-                    },
-                    400:{
-                        slidesPerView: 2.5,
-                        slidesPerGroup: 3,
-                        spaceBetween:10,
-                        speed:600,
-                        
-                    },
-                    640: {
-                      slidesPerView: 2.5,
-                      slidesPerGroup: 3,
-                      spaceBetween:25,
-                      speed:600
-                    },
-                    768: {
-                      slidesPerView: 3.5,
-                      slidesPerGroup: 4,
-                      spaceBetween:35,
-                      speed:600
-                    },
-                    1024: {
-                      slidesPerView: 4.6,
-                      slidesPerGroup: 4,
-                      spaceBetween:35,
-                      speed:600
-                    }
+                  50: {
+                    slidesPerView: 2.5,
+                    slidesPerGroup: 2,
+                    spaceBetween: 10,
+                    speed: 200,
+                  },
+                  400: {
+                    slidesPerView: 2.5,
+                    slidesPerGroup: 3,
+                    spaceBetween: 10,
+                    speed: 600,
+                  },
+                  640: {
+                    slidesPerView: 2.5,
+                    slidesPerGroup: 3,
+                    spaceBetween: 25,
+                    speed: 600,
+                  },
+                  768: {
+                    slidesPerView: 3.5,
+                    slidesPerGroup: 4,
+                    spaceBetween: 35,
+                    speed: 600,
+                  },
+                  1024: {
+                    slidesPerView: 4.6,
+                    slidesPerGroup: 4,
+                    spaceBetween: 35,
+                    speed: 600,
+                  },
                 }}
-
                 onBeforeInit={(swiper) => {
                   // Ensure navigation elements are correctly assigned
                   if (
@@ -129,22 +136,28 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                 }}
               >
                 {trending.map((movie: Movie | ShowResult, index: number) => {
-                   const isMovie = (movie as Movie).release_date !== undefined;
+                  const isMovie = (movie as Movie).release_date !== undefined;
                   return (
                     <div key={index} className="w-[50%] relative ">
-                    
                       <SwiperSlide key={movie.id}>
-                      <Link href={`/explore/${type=='movie'?"movies":"tv"}/details/${isMovie?(movie as Movie).title:(movie as ShowResult).original_name}capo-${movie.id}`}>
-                        <Image
-                          width="350"
-                          height="350"
-                          className="transition-all hover:duration-600 duration-500 border-2 border-[#05050500]  flex items-center justify-center hover:border-[2px] hover:border-[#E70713]"
-                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                          alt="Moviepoater"
-                        />
-                          </Link>
+                        <Link
+                          href={`/explore/${
+                            type == "movie" ? "movies" : "tv"
+                          }/details/${
+                            isMovie
+                              ? (movie as Movie).title
+                              : (movie as ShowResult).original_name
+                          }capo-${movie.id}`}
+                        >
+                          <Image
+                            width="350"
+                            height="350"
+                            className="transition-all hover:duration-600 duration-500 border-2 border-[#05050500]  flex items-center justify-center hover:border-[2px] hover:border-[#E70713]"
+                            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                            alt="Moviepoater"
+                          />
+                        </Link>
                       </SwiperSlide>
-                    
                     </div>
                   );
                 })}
@@ -155,7 +168,7 @@ const TrendingComponent :React.FC<Props>=({title,url,type}) => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className=" text-center relative z-40 flex justify-end cursor-pointer max-mob:hidden"
+                className=" text-center relative z-50 flex justify-end cursor-pointer max-mob:hidden "
                 aria-label="Next Slide"
               >
                 <svg
